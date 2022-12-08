@@ -1,0 +1,19 @@
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
+
+
+export const Recipe = (props) => {
+
+  const navigate = useNavigate()
+
+
+
+  return (
+    <div>
+      <h1>{props.title}</h1>
+      <img width= '400px' alt={props.title} src={props.image}/>
+      <h3>Ready in {props.readyInMinutes} minutes</h3>
+      <h3>Health Score {props.healthScore}</h3>
+    </div>
+  )
+}

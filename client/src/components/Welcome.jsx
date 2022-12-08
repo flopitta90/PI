@@ -1,13 +1,25 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { connect, useDispatch } from 'react-redux'
+import { useEffect } from 'react'
+import {addRecipes} from '../redux/actions'
 
-export const Welcome = () => {
+const Welcome = () => { 
 
-const navigate = useNavigate()
+  const dispatch = useDispatch()
 
-function goToHome(){
-  navigate('/home')
-}
+ 
+  useEffect(()=>{
+    fetch(`http://localhost:3001/recipes`)
+      .then((response) => response.json())
+      .then((data)=> dispatch(addRecipes(data)))
+    }, [])
+  
+  const navigate = useNavigate()
+
+  function goToHome(){
+    navigate('/home')
+  }
 
   return (
     <div>
@@ -16,3 +28,6 @@ function goToHome(){
     </div>
   )
 }
+
+ 
+ export default connect()(Welcome)

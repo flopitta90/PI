@@ -1,9 +1,8 @@
 import './App.css';
 import Nav from './components/Nav'
 import Home from './components/Home'
-import { useState, useEffect} from 'react'
-import {Routes, Route, useLocation, useNavigate} from 'react-router-dom'
-import { Welcome } from './components/Welcome';
+import {Routes, Route, useLocation} from 'react-router-dom'
+import Welcome  from './components/Welcome';
 import { Favorites } from './components/Favorites';
 import { New } from './components/New';
 
