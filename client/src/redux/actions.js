@@ -1,5 +1,9 @@
-import { ADD_RECIPES } from "./reducer";
+import { ADD_DIETS, ADD_RECIPES } from "./reducer";
 
 export function addRecipes(recipes){
   return {type: ADD_RECIPES, payload: recipes}
+}
+
+export function addDiets(diets){
+  return {type: ADD_DIETS, payload: diets}
 }
