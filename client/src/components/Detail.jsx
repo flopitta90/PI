@@ -7,6 +7,7 @@ const Detail = ({allRecipes}) => {
   const {id} = useParams()
   
   const recipe = allRecipes.find(recipe => recipe.id === parseInt(id))
+  console.log(recipe)
   
   return (
     allRecipes.length < 1 ? <h1>loading</h1> :
@@ -14,6 +15,8 @@ const Detail = ({allRecipes}) => {
       <h1>{recipe.title}</h1>
       <img width='500px' src={recipe.image} alt={recipe.title} />
       <p dangerouslySetInnerHTML={ { __html: recipe.summary }}/>
+      <h3>INGREDIENTS</h3>
+      {recipe.ingredients.map(ing => <li key={ing}>{ing}</li>)}
       <h3>STEPS</h3>
       <p>{recipe.analyzedInstructions}</p>
     </div>
