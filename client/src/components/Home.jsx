@@ -1,18 +1,37 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import { connect, useDispatch } from 'react-redux'
+import { searchRecipes } from '../redux/actions'
 import { Pagination } from './Pagination'
 import { Recipe } from './Recipe'
+import { Search } from './Search'
 
 
-const Home = ({allRecipes}) => {
+const Home = ({showingRecipes, allRecipes}) => {
 
   const [currentPage, setCurrentPage] = React.useState(0)
-  const[showingRecipes , setShowingRecipes] = React.useState([])
+  const[showingRecipesPages , setShowingRecipes] = React.useState([])
   
-  
+  const dispatch = useDispatch()
+
   React.useEffect(()=>{
-     setShowingRecipes([...allRecipes.slice(currentPage*9, currentPage*9 + 9)])
-  },[currentPage, allRecipes])
+     setShowingRecipes([...showingRecipes.slice(currentPage*9, currentPage*9 + 9)])
+  },[currentPage, showingRecipes])
+
+ const searchByName =  (name) => {
+  if(name){
+    if(allRecipes.find(recipe => recipe.title.toLowerCase().includes(name))){
+      fetch(`http://localhost:3001/recipes?title=${name}`)
+        .then((response) => response.json())
+        .then((data)=> {dispatch(searchRecipes(data))})
+    } else {
+        window.alert('There are no recipes with that name, check the spelling or try with another name')
+    }
+  }else{
+    fetch(`http://localhost:3001/recipes`)
+    .then((response) => response.json())
+    .then((data)=> dispatch(searchRecipes(data)))
+  }
+}
 
   const handlePages = (id) => {
     setCurrentPage(id-1)
@@ -21,7 +40,8 @@ const Home = ({allRecipes}) => {
 
   return (
     <div>
-      {showingRecipes?.map(recipe => {
+      <Search searchByName={searchByName}/>
+      {showingRecipesPages?.map(recipe => {
         return <Recipe
         key={recipe.id}
         id={recipe.id}
@@ -35,13 +55,16 @@ const Home = ({allRecipes}) => {
         diets={recipe.diets}
         />
       })}
-      <Pagination amount={allRecipes.length} currentPage={currentPage} handlePages={handlePages}/>
+      <Pagination amount={showingRecipes.length} currentPage={currentPage} handlePages={handlePages}/>
     </div>
   )
 }
 
 function mapStateToProps(state){
-  return {allRecipes: state.allRecipes}
+  return {
+    showingRecipes: state.showingRecipes,
+    allRecipes: state.allRecipes
+  }
 }
 
 export default connect(mapStateToProps)(Home)

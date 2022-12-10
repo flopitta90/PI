@@ -9,13 +9,13 @@ const Master = (props) => {
     fetch(`http://localhost:3001/recipes`)
       .then((response) => response.json())
       .then((data)=> dispatch(addRecipes(data)))
-    }, [])
+    }, [dispatch])
 
     React.useEffect(()=>{
       fetch(`http://localhost:3001/diets`)
         .then((response) => response.json())
         .then((data)=> dispatch(addDiets(data)))
-      }, [])
+      }, [dispatch])
   
 
   return (
