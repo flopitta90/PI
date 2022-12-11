@@ -1,4 +1,4 @@
-import { ADD_DIETS, ADD_RECIPES, FILTER_DIETS, SEARCH_RECIPES } from "./reducer";
+import { ADD_DIETS, ADD_RECIPES, FILTER_DIETS, SEARCH_RECIPES, SORT} from "./reducer";
 
 export function addRecipes(recipes){
   return {type: ADD_RECIPES, payload: recipes}
@@ -14,4 +14,8 @@ export function searchRecipes(recipes){
 
 export function filterDiets(diet){
   return {type: FILTER_DIETS, payload: diet }
+}
+
+export function sort(sortBy){
+  return {type: SORT, payload: sortBy}
 }

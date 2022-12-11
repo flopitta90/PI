@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { filterDiets, searchRecipes } from '../redux/actions'
+import { filterDiets, searchRecipes, sort } from '../redux/actions'
 import { useEffect } from 'react'
 
 
@@ -71,6 +71,12 @@ const FilterSort = () => {
   setName('')
 }
 
+  const handleSort = (e) =>{
+    dispatch(sort(e.target.value))
+  }
+
+
+
 
   return (
     <div>
@@ -86,7 +92,18 @@ const FilterSort = () => {
               <label >{diet.name}</label>
             </div>
         })}
-        </fieldset>
+      </fieldset>
+      <fieldset>
+        <legend>Sort</legend>
+        <select onChange={handleSort}>
+          <option value='as by id'>Ascendant by id</option>
+          <option value='des by id'>Descendant by id</option>
+          <option value='as by score'>Ascendant by Health Score</option>
+          <option value='des by score'>Descendant by Health Score</option>
+          <option value='az'>Alphabetically A-Z</option>
+          <option value='za'>Alphabetically Z-A</option>
+        </select>
+      </fieldset>
       <button onClick={handleClear}>Clear search</button>
     </div>
   )
