@@ -10,7 +10,8 @@ const FilterSort = () => {
  const allDiets = useSelector(state => state.allDiets)
  const filteredDiets = useSelector(state=> state.filteredDiets)
  const [selectedIds, setSelectedIds] = useState([])
- const [name , setName] = React.useState('')
+ const [name , setName] = useState('')
+ const [selectedSort, setSelectedSort] = useState('as by id')
  const allRecipes = useSelector(state => state.allRecipes)
  const payload = filteredDiets.filter(recipe => filteredDietsFunc(recipe.diets, selectedIds))
  
@@ -29,7 +30,8 @@ const FilterSort = () => {
   
   useEffect(()=>{
     dispatch(filterDiets(payload))
-  },[selectedIds, dispatch, name])
+    dispatch(sort(selectedSort))
+  },[selectedIds, dispatch, name, selectedSort])
 
 
   function filteredDietsFunc(diets, selectedDiets){
@@ -72,7 +74,7 @@ const FilterSort = () => {
 }
 
   const handleSort = (e) =>{
-    dispatch(sort(e.target.value))
+    setSelectedSort(e.target.value)
   }
 
 
