@@ -4,7 +4,6 @@ import {addRecipes, addDiets} from '../redux/actions'
 
 const Master = (props) => {
   const dispatch = useDispatch()
-  
   React.useEffect(()=>{
     fetch(`http://localhost:3001/recipes`)
       .then((response) => response.json())

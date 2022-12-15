@@ -1,16 +1,19 @@
 import React ,{ useState } from 'react'
 import validate from './validation.js' 
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import {useNavigate} from 'react-router-dom'
 import styled from 'styled-components'
+import { addNewRecipe , searchRecipes} from '../redux/actions.js'
 
 const Error = styled.p`
   color: red;
 `
 
 export const New = () => {
-
+  const allRecipes = useSelector(state => state.allRecipes)
   const allDiets = useSelector(state => state.allDiets)
-
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const [recipeData, setRecipeData] = useState({
     title: '',
     image: '',
@@ -40,7 +43,7 @@ export const New = () => {
     setErrors(
         validate({...recipeData,
         [event.target.name]: event.target.value 
-    }))
+    }, allRecipes))
 }   
 
   const addIngredient = (event) => {
@@ -67,7 +70,7 @@ export const New = () => {
       setErrors(
         validate({...recipeData,
         diets : recipeData.diets.filter(item => item !== e.target.value)
-      }))
+      }, allRecipes))
     }
     else{
        setRecipeData({...recipeData, 
@@ -76,25 +79,40 @@ export const New = () => {
         setErrors(
           validate({...recipeData,
           diets : [...recipeData.diets, e.target.value]  
-        }))
+        }, allRecipes))
     }
   }
+
 
   const handleSubmit= (e) => {
 
     e.preventDefault();
 
-
-    const recipe = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(recipeData)
-    };
-    fetch('http://localhost:3001/recipes', recipe)
+    if(Object.keys(errors).length === 0){
+      const recipe = {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(recipeData)
+      };
+   
+      fetch('http://localhost:3001/recipes', recipe)
         .then(response => response.json())
-        .then(result => console.log(result));
+        .then(result => {dispatch(addNewRecipe(result))
+        if(result.id) {
+          fetch(`http://localhost:3001/recipes`)
+          .then((response) => response.json())
+          .then((data)=> dispatch(searchRecipes(data)))
+          navigate(`/detail/${result.id}`)
+        } else {
+          window.alert('There was an error')
+        }
+      })
+    }else{
+      window.alert('Please complete all the required fields or modify as neccesary')
+    }
 
-};
+
+  };
 
 
   return (
@@ -175,7 +193,7 @@ export const New = () => {
         <label>Image</label>
         <input type="text" placeholder='Put url of your image here' onChange={handleChange} name='image' value={recipeData.image}/>
         <Error>{errors.image}</Error>
-        {recipeData.image ? <img width='200px'src={recipeData.image} /> : null}
+        {recipeData.image ? <img alt= {recipeData.title} width='200px'src={recipeData.image} /> : null}
         <button onClick={handleSubmit}>Submit</button>
       </form>
     </div>

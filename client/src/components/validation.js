@@ -2,14 +2,19 @@ function isImage(url) {
   return /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url);
 }
 
-const validate = (recipeData)=>{
+const validate = (recipeData, allRecipes)=>{
   let errors={}
+  const titleExists = allRecipes.find(recipe => recipe.title === recipeData.title)
+  if(titleExists){
+    errors.title = 'That title already exists'
+  }
   if(recipeData.title.length < 3){
     errors.title = 'Title is too short'
   }
   if(recipeData.title.length > 50){
     errors.title = 'Title is too long'
   }
+  
   if(recipeData.image){
     if(!isImage(recipeData.image)){
       errors.image = 'The url does not belong to an image'

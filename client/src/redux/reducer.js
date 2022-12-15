@@ -3,6 +3,7 @@ export const ADD_DIETS = 'ADD_DIETS'
 export const SEARCH_RECIPES = 'SEARCH_RECIPES'
 export const FILTER_DIETS = 'FILTER_DIETS'
 export const SORT ='SORT'
+export const ADD_RECIPE = 'ADD_RECIPE'
 
 
 const initialState = {
@@ -43,7 +44,12 @@ function reducer (state = initialState, action){
         return {...state, showingRecipes: [...state.showingRecipes.sort((a,b)=> a.title.localeCompare(b.title))]}
       }else{
         return {...state, showingRecipes: [...state.showingRecipes.sort((a,b)=> b.title.localeCompare(a.title))]}
-      }
+      };
+    case ADD_RECIPE: 
+      return{...state, 
+        allRecipes:[...state.allRecipes, action.payload], 
+        showingRecipes:[...state.showingRecipes, action.payload]
+      }  
     default: return state  
   }
 }
