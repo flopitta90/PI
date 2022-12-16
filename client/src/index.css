@@ -5,9 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url('https://wallpapers.com/images/hd/white-textured-paper-439vozmsl9bybc8a.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-image: url('./images/white-wall-texture-background\ \(1\).jpg');
+  background-repeat: repeat;
+  
 }
 
 code {

@@ -2,7 +2,55 @@ import React, {useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { filterDiets, searchRecipes, sort } from '../redux/actions'
 import { useEffect } from 'react'
+import styled from 'styled-components'
 
+const Wrapper= styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 15%;
+  padding: 30px 20px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  font-size: 18px;
+  margin-left: 20px;
+  align-items: center;
+`
+const FieldSet = styled.fieldset`
+  border-style: solid 4px;
+  border-color: black;
+  width: 100%;
+  margin: 10px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  `
+
+const Input = styled.input`
+  background-color: transparent;
+  border: solid;
+  border-color: black;
+`
+const Buttons =styled.button`
+ background-color : black;
+ color:#67eb8e ;
+ border: none;
+ margin-top: 5px;
+ padding: 10px;
+ font-family: 'Bowlby One SC', cursive;
+ width: 100%;
+:hover{
+  background-color: #67eb8e;
+  color: black;
+  border: solid black;
+}
+`
+const Select = styled.select`
+  border: solid;
+  border-color: black;
+  background-color: transparent;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 11px;
+`
 
 const FilterSort = () => {
 
@@ -77,37 +125,36 @@ const FilterSort = () => {
     setSelectedSort(e.target.value)
   }
 
-
-
-
   return (
-    <div>
-        <div>
-          <input placeholder='Search a recipe' type='text' onChange={handleInput} value={name}/>
-          <button onClick={handleClick}>Search</button>
-        </div>
-      <fieldset>
+    <Wrapper>
+        <FieldSet>
+          <legend>Search by Name</legend>
+          <Input type='text' onChange={handleInput} value={name}/>
+          <Buttons onClick={handleClick}>Search</Buttons>
+        </FieldSet>
+        
+      <FieldSet>
           <legend>Filter by diets</legend>
           {allDiets.map(diet => {
             return <div key={diet.name}>
-              <input type='checkbox' id={diet.id} value={diet.id} onChange={whenSelected} checked={selectedIds.find(element => element === diet.id)|| false}/>
+              <Input type='checkbox' id={diet.id} value={diet.id} onChange={whenSelected} checked={selectedIds.find(element => element === diet.id)|| false}/>
               <label >{diet.name}</label>
             </div>
         })}
-      </fieldset>
-      <fieldset>
+      </FieldSet>
+      <FieldSet>
         <legend>Sort</legend>
-        <select onChange={handleSort}>
+        <Select onChange={handleSort}>
           <option value='as by id'>Ascendant by id</option>
           <option value='des by id'>Descendant by id</option>
           <option value='as by score'>Ascendant by Health Score</option>
           <option value='des by score'>Descendant by Health Score</option>
           <option value='az'>Alphabetically A-Z</option>
           <option value='za'>Alphabetically Z-A</option>
-        </select>
-      </fieldset>
-      <button onClick={handleClear}>Clear search</button>
-    </div>
+        </Select>
+      </FieldSet>
+      <Buttons onClick={handleClear}>Clear search</Buttons>
+    </Wrapper>
   )
 }
 

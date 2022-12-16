@@ -1,10 +1,29 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import styled from 'styled-components'
 import FilterSort from './FilterSort'
 import { Pagination } from './Pagination'
 import { Recipe } from './Recipe'
 
-
+const Wrapper = styled.div`
+  display: flex;
+`
+const Showing= styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  right: 0;
+`
+const Title = styled.h1`
+  font-family: 'Bowlby One SC', cursive;
+  font-size: 60px;
+  letter-spacing: 2px;
+`
+const Recipes= styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+`
 
 const Home = ({showingRecipes}) => {
 
@@ -17,14 +36,26 @@ const Home = ({showingRecipes}) => {
 
 
 
-  const handlePages = (id) => {
-    setCurrentPage(id-1)
+  const handlePages = (num) => {
+   if(parseInt(num))
+    setCurrentPage(num-1)
+    else{
+      if(num === 'prev'){
+        setCurrentPage(currentPage-1)
+      }
+      else if(num === 'next'){
+        setCurrentPage(currentPage+1)
+      }
+    }
   }
 
 
   return (
-    <div>
+    <Wrapper>
       <FilterSort/>
+      <Showing>
+        <Title>recipes</Title>
+        <Recipes>
       {showingRecipesPages?.map(recipe => {
         return <Recipe
         key={recipe.id}
@@ -39,8 +70,10 @@ const Home = ({showingRecipes}) => {
         diets={recipe.diets}
         />
       })}
+      </Recipes>
       <Pagination amount={showingRecipes.length} currentPage={currentPage} handlePages={handlePages}/>
-    </div>
+      </Showing>
+    </Wrapper>
   )
 }
 
