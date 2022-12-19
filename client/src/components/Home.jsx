@@ -32,9 +32,12 @@ const Home = ({showingRecipes}) => {
   
   React.useEffect(()=>{
      setShowingRecipes([...showingRecipes.slice(currentPage*9, currentPage*9 + 9)])
-  },[currentPage, showingRecipes])
+  },[currentPage])
 
-
+  React.useEffect(()=>{
+    setCurrentPage(0)
+    setShowingRecipes([...showingRecipes.slice(currentPage*9, currentPage*9 + 9)])
+ },[showingRecipes])
 
   const handlePages = (num) => {
    if(parseInt(num))
@@ -47,6 +50,11 @@ const Home = ({showingRecipes}) => {
         setCurrentPage(currentPage+1)
       }
     }
+    window.scroll({
+      top: 0, 
+      left: 0, 
+      behavior: 'smooth'
+    });
   }
 
 

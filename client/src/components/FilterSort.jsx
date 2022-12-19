@@ -48,7 +48,6 @@ const Select = styled.select`
   border: solid;
   border-color: black;
   background-color: transparent;
-  font-family: 'Courier New', Courier, monospace;
   font-size: 11px;
 `
 

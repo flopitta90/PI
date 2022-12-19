@@ -19,21 +19,27 @@ const NavButtons=styled(NavLink)`
   font-size: 20px;
   letter-spacing: 1px;
   max-height: 100px;
+  margin-right: 40px;
 `
 
 const Mustache = styled.img`
   color:#67eb8e;
+`
+const Menu= styled.div`
+  display: flex;
+  justify-content: space-between;
 `
 
 const Nav = () => {
   return (
     <NavDiv>
       <NavButtons to='/'>
-        <p>italian kitchen</p>
         <Mustache height='50px' src={mustache}/></NavButtons>
+        <Menu> 
       <NavButtons to='/home'>home</NavButtons>
       <NavButtons to='/favorites'>my favorites</NavButtons>
       <NavButtons to='/recipe'>add a recipe</NavButtons>
+        </Menu>
     </NavDiv>
   )
 }

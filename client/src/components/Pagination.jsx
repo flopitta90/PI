@@ -10,10 +10,20 @@ const BttPage = styled.button`
   width: 40px;
   font-family: 'Bowlby One SC', cursive;
 `
+const BttPageS = styled.button`
+  background-color: #67eb8e;
+  color: black;
+  border: none;
+  margin: 5px;
+  padding: 10px 0px;
+  width: 40px;
+  font-family: 'Bowlby One SC', cursive;
+`
 
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
+  margin-bottom: 50px;
   justify-content: center;
 `
 
@@ -36,7 +46,10 @@ export const Pagination = (props) => {
   }
 
   const buttonsToShow = () => {
-      return arrButtons.map(btt => <BttPage onClick={handleClick} key={btt + 'b'} id={btt}>{btt}</BttPage>)
+      return arrButtons.map(btt => {
+        console.log(props.currentPage)
+        if(parseInt(btt) === parseInt(props.currentPage)+1 ){ return <BttPageS onClick={handleClick} key={btt + 'b'} id={btt}>{btt}</BttPageS>}
+          return <BttPage onClick={handleClick} key={btt + 'b'} id={btt}>{btt}</BttPage>})
   }
 
   return (
