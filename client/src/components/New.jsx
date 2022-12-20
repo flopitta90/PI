@@ -5,9 +5,104 @@ import {useNavigate} from 'react-router-dom'
 import styled from 'styled-components'
 import { addNewRecipe , searchRecipes} from '../redux/actions.js'
 
+const Title = styled.h1`
+  font-family: 'Bowlby One SC';
+  font-size: 40px;
+  letter-spacing: 2px;
+
+`
+const FormWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
 const Error = styled.p`
   color: red;
+  text-align: center;
 `
+const NewRecipeForm = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  font-weight: bold;
+  align-items: center;
+  background-color: #f8f8f8;
+  padding: 40px;
+`
+const Fields = styled.form`
+  text-align: justify;
+  textarea{
+    height: 50px;
+  }
+
+  input{
+    max-height: 20px;
+  }
+
+  div{
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    justify-content: center;
+    div{
+      flex-direction: row;
+      margin: 5px;
+    }
+  }
+
+  fieldset{
+    width: 45%;
+    display: flex;
+    flex-direction :column ;
+    .ingredients{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-end;
+    }
+    button{
+      background-color : black;
+      color:#67eb8e ;
+      border: none;
+      font-family: 'Bowlby One SC', cursive;
+      padding: 10px;
+      margin: 5px;
+      :hover{
+        background-color: #67eb8e;
+        color: black;
+        }
+    }
+    .x{
+      padding: 2px;
+      font-family: 'Courier New', Courier, monospace;
+      font-weight: bold;
+    }
+    .diets{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+    }
+  }
+`
+
+const Submit = styled.button`
+  margin: 10px;
+  background-color : black;
+ color:#67eb8e ;
+ border: none;
+ padding: 10px;
+ font-family: 'Bowlby One SC', cursive;
+ width: 20%;
+:hover{
+  background-color: #67eb8e;
+  color: black;
+  border: solid black;
+}
+`
+
 
 export const New = () => {
   const allRecipes = useSelector(state => state.allRecipes)
@@ -110,93 +205,114 @@ export const New = () => {
     }else{
       window.alert('Please complete all the required fields or modify as neccesary')
     }
-
-
   };
 
 
   return (
-    <div>
-      <h1>Create your own recipe!</h1>
-      <form>
-        <label>Title</label>
-        <input type='text' 
-        name='title'
-        placeholder='Title required'
-        value={recipeData.title}
-        onChange={handleChange}/>
-        <Error>{errors.title}</Error>
+    <FormWrapper>
+    <NewRecipeForm>
+      <Title>add your own recipe!</Title>
+      <Fields>
 
-        <label>Summary</label>
-        <textarea type='text' 
-        name='summary'
-        placeholder='Summary required'
-        value={recipeData.summary}
-        onChange={handleChange}/>
-        <Error>{errors.summary}</Error>
-
-        <label>Health Score</label>
-        <input type='number' 
-        name='healthScore'
-        placeholder='0-100'
-        value={recipeData.healthScore}
-        onChange={handleChange}/>
-        <Error>{errors.healthScore}</Error>
-
-        <label>Dish type/s</label>
-        <input type='text' 
-        name='dishTypes'
-        placeholder='ex: Main dish / Breakfast'
-        value={recipeData.dishTypes}
-        onChange={handleChange}/>
-
-        <label>Instructions</label>
-        <textarea type='text' 
-        name='analyzedInstructions'
-        value={recipeData.analyzedInstructions}
-        onChange={handleChange}/>
-
-        <label>How many minutes to be ready?</label>
-        <input type='text' 
-        name='readyInMinutes'
-        placeholder=''
-        value={recipeData.readyInMinutes}
-        onChange={handleChange}/>
-        
-        <fieldset>
-        {recipeData.ingredients.map(ingredient => 
-          <div key={ingredient}>
-          <span>{ingredient}</span> 
-          <button value={ingredient} name='ingredients' onClick={onClose}>x</button>
-          </div>)}
-        
-          <legend>Ingredients</legend>
+        <div>
+          <label>Title</label>
           <input type='text' 
-          name='ingredient'
-          value={recipeData.ingredient}
-          onChange={handleChange}
-          />
-          <button onClick={addIngredient}>add ingredient</button>
-        </fieldset>
+          name='title'
+          placeholder='Title required'
+          value={recipeData.title}
+          onChange={handleChange}/>
+        </div>
+          <Error>{errors.title}</Error>
 
-        <fieldset>
-        <legend>Choose to what type of diets your recipe belongs to:</legend>
-          {allDiets.map(diet => {
-            return <div key={diet.name}>
-              <input type='checkbox' name='diets' value={diet.name} onChange={whenSelected} checked={recipeData.diets.find(element => element === diet.name) || false}/>
-              <label >{diet.name}</label>
-            </div>
-        })}  
-        </fieldset>
-        <Error>{errors.diets}</Error>
-        
-        <label>Image</label>
-        <input type="text" placeholder='Put url of your image here' onChange={handleChange} name='image' value={recipeData.image}/>
-        <Error>{errors.image}</Error>
-        {recipeData.image ? <img alt= {recipeData.title} width='200px'src={recipeData.image} /> : null}
-        <button onClick={handleSubmit}>Submit</button>
-      </form>
-    </div>
+        <div>
+          <label>Summary</label>
+          <textarea type='text' 
+          name='summary'
+          placeholder='Summary required'
+          value={recipeData.summary}
+          onChange={handleChange}/>
+        </div>
+          <Error>{errors.summary}</Error>
+
+        <div>
+          <label>Instructions</label>
+          <textarea type='text' 
+          name='analyzedInstructions'
+          value={recipeData.analyzedInstructions}
+          onChange={handleChange}/>
+        </div>
+
+        <div>
+          <label>Health Score</label>
+          <input type='number' 
+          name='healthScore'
+          placeholder='0-100'
+          value={recipeData.healthScore}
+          onChange={handleChange}/>
+        </div>
+          <Error>{errors.healthScore}</Error>
+
+        <div>
+          <label>Dish type/s</label>
+          <input type='text' 
+          name='dishTypes'
+          placeholder='ex: Main dish / Breakfast'
+          value={recipeData.dishTypes}
+          onChange={handleChange}/>
+        </div>
+
+
+        <div>
+          <label>How many minutes to be ready?</label>
+          <input type='number' 
+          name='readyInMinutes'
+          placeholder=''
+          value={recipeData.readyInMinutes}
+          onChange={handleChange}/>
+        </div>
+
+        <div>
+          <div>
+          <fieldset>
+          <legend>Choose to what type of diets your recipe belongs to:</legend>
+            {allDiets.map(diet => {
+              return <div className='diets'>
+                <input type='checkbox' name='diets' value={diet.name} onChange={whenSelected} checked={recipeData.diets.find(element => element === diet.name) || false}/>
+                <label >{diet.name}</label>
+                </div>
+          })}  
+          <Error>{errors.diets}</Error>
+          </fieldset>
+
+          <fieldset>
+            <legend>Ingredients</legend>
+          {recipeData.ingredients.map(ingredient => 
+            <div className='ingredients' key={ingredient}>
+            <span>{ingredient}</span> 
+            <button className='x' value={ingredient} name='ingredients' onClick={onClose}>x</button>
+            </div>)}
+          
+            <input type='text' 
+            name='ingredient'
+            value={recipeData.ingredient}
+            onChange={handleChange}
+            />
+            <button onClick={addIngredient}>add ingredient</button>
+          </fieldset>
+          </div>
+        </div>
+
+        <div>    
+          <label>Image</label>
+          <input type="text" placeholder='Paste url of your image here' onChange={handleChange} name='image' value={recipeData.image}/>
+          <Error>{errors.image}</Error>
+          {recipeData.image ? <img alt= {recipeData.title} width='200px'src={recipeData.image} /> : null}
+        </div>      
+
+      </Fields>
+        <Submit onClick={handleSubmit}>Submit</Submit>
+    </NewRecipeForm>
+    </FormWrapper>
   )
 }
 

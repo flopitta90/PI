@@ -14,7 +14,6 @@ const SummaryAndImage = styled.div`
   background-color: black;
   color: white;
   font-family: 'Courier New', Courier, monospace;
-  text-decoration: none;
   justify-content: space-between;
 `
 const Summary=styled.p`
@@ -29,6 +28,8 @@ const Summary=styled.p`
     color: white;
   }
 `
+
+
 const Wrapper= styled.div`
   margin: 30px;
   display: flex;
@@ -36,6 +37,7 @@ const Wrapper= styled.div`
   align-items: center;
   text-align: justify;
   font-weight: bolder;
+  
 
   li{
     width: 500px;
@@ -76,23 +78,34 @@ const Detail = ({allRecipes}) => {
       <img src={recipe.image} alt={recipe.title} width='500px' />
       <Summary dangerouslySetInnerHTML={ { __html: recipe.summary } }/>
       </SummaryAndImage>
-      <Wrapper>
-        <div>
-          <SubTitle>Ingredients</SubTitle>
-          <Fieldset/>
-        </div>
-        <div>
-          {recipe.ingredients.map(ing => <Ingredient key={ing}>{ing}</Ingredient>)}
-        </div>
-      </Wrapper>
+     
       
-      <Wrapper>
-        <div>
-          <SubTitle>Directions</SubTitle>
-          <Fieldset/>
-        </div>
-        <p>{recipe.analyzedInstructions}</p>
-      </Wrapper>
+        <Wrapper>
+          <SubTitle>Ready in {recipe.readyInMinutes} minutes</SubTitle>
+        </Wrapper>
+
+        <Wrapper>
+          <SubTitle>Health Score: {recipe.healthScore}</SubTitle>
+        </Wrapper>
+
+        <Wrapper>
+          <div>
+            <SubTitle>Ingredients</SubTitle>
+            <Fieldset/>
+          </div>
+          <div>
+            {recipe.ingredients.map(ing => <Ingredient key={ing}>{ing}</Ingredient>)}
+          </div>
+        </Wrapper>
+        
+        <Wrapper>
+          <div>
+            <SubTitle>Directions</SubTitle>
+            <Fieldset/>
+          </div>
+          <p>{recipe.analyzedInstructions}</p>
+        </Wrapper>
+      
       
     </div>
   )
