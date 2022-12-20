@@ -47,7 +47,6 @@ export const Pagination = (props) => {
 
   const buttonsToShow = () => {
       return arrButtons.map(btt => {
-        console.log(props.currentPage)
         if(parseInt(btt) === parseInt(props.currentPage)+1 ){ return <BttPageS onClick={handleClick} key={btt + 'b'} id={btt}>{btt}</BttPageS>}
           return <BttPage onClick={handleClick} key={btt + 'b'} id={btt}>{btt}</BttPage>})
   }

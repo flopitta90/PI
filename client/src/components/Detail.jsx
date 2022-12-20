@@ -68,7 +68,6 @@ const Detail = ({allRecipes}) => {
   const {id} = useParams()
   
   const recipe = allRecipes.find(recipe => recipe.id === parseInt(id))
-  console.log(recipe)
   
   return (
     allRecipes.length < 1 ? <h1>loading</h1> :

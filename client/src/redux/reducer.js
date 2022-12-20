@@ -4,6 +4,8 @@ export const SEARCH_RECIPES = 'SEARCH_RECIPES'
 export const FILTER_DIETS = 'FILTER_DIETS'
 export const SORT ='SORT'
 export const ADD_RECIPE = 'ADD_RECIPE'
+export const ADD_FAVORITE = 'ADD_FAVORITE'
+export const DELETE_FAVORITE = 'DELETE_FAVORITE'
 
 
 const initialState = {
@@ -49,6 +51,14 @@ function reducer (state = initialState, action){
       return{...state, 
         allRecipes:[...state.allRecipes, action.payload], 
         showingRecipes:[...state.showingRecipes, action.payload]
+      };  
+    case ADD_FAVORITE:
+      return{...state,
+        myFavorites: [...state.myFavorites, action.payload]
+      };
+    case DELETE_FAVORITE:
+      return{...state,
+        myFavorites: [...state.myFavorites.filter(recipe => recipe.id !== action.payload)]
       }  
     default: return state  
   }

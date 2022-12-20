@@ -111,6 +111,20 @@ const FilterSort = () => {
     }
   }  
 
+
+  // const searchByName =  (name) => {
+  //   if(name){
+  //     if(allRecipes.find(recipe => recipe.title.toLowerCase().includes(name))){
+  //           dispatch(searchRecipes(name))
+  //           setSelectedIds([...selectedIds])
+  //     } else {
+  //         window.alert('There are no recipes with that name, check the spelling or try with another name')
+  //     }
+  //   }
+  // } 
+
+
+
   const handleInput =(event) => {
   setName(event.target.value)
 }
