@@ -37,6 +37,10 @@ module.exports = (sequelize) => {
     readyInMinutes:{
       type: DataTypes.INTEGER,
       defaultValue: 60
+    },
+    ingredients:{
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      defaultValue:['No se han especificado los ingredientes']
     }
   });
 };

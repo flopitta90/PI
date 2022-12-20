@@ -15,5 +15,5 @@
   return db
 })
 
-console.log(recipes)
+
  module.exports = recipes
