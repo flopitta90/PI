@@ -55,12 +55,11 @@ const FilterSort = () => {
 
  const dispatch = useDispatch()
  const allDiets = useSelector(state => state.allDiets)
- const filteredDiets = useSelector(state=> state.filteredDiets)
+ const allRecipes = useSelector(state => state.allRecipes)
  const [selectedIds, setSelectedIds] = useState([])
  const [name , setName] = useState('')
- const [selectedSort, setSelectedSort] = useState('as by id')
- const allRecipes = useSelector(state => state.allRecipes)
- const payload = filteredDiets.filter(recipe => filteredDietsFunc(recipe.diets, selectedIds))
+ const [selectedSort, setSelectedSort] = useState('none')
+ const payload = allRecipes.filter(recipe => filteredDietsFunc(recipe.diets, selectedIds) && recipe.title.toLowerCase().includes(name))
  
   
 
@@ -91,48 +90,13 @@ const FilterSort = () => {
 
   function handleClear(){
     setSelectedIds([])
-    fetch(`http://localhost:3001/recipes`)
-      .then((response) => response.json())
-      .then((data)=> dispatch(searchRecipes(data)))
+    setName('')
   }
-  
-  const searchByName =  (name) => {
-    if(name){
-      if(allRecipes.find(recipe => recipe.title.toLowerCase().includes(name))){
-        fetch(`http://localhost:3001/recipes?title=${name}`)
-          .then((response) => response.json())
-          .then((data)=> {
-            dispatch(searchRecipes(data))
-            setSelectedIds([...selectedIds])
-          })
-      } else {
-          window.alert('There are no recipes with that name, check the spelling or try with another name')
-      }
-    }
-  }  
-
-
-  // const searchByName =  (name) => {
-  //   if(name){
-  //     if(allRecipes.find(recipe => recipe.title.toLowerCase().includes(name))){
-  //           dispatch(searchRecipes(name))
-  //           setSelectedIds([...selectedIds])
-  //     } else {
-  //         window.alert('There are no recipes with that name, check the spelling or try with another name')
-  //     }
-  //   }
-  // } 
-
-
-
+ 
   const handleInput =(event) => {
   setName(event.target.value)
 }
 
-  const handleClick = (e)=>{
-  searchByName(name)
-  setName('')
-}
 
   const handleSort = (e) =>{
     setSelectedSort(e.target.value)
@@ -143,7 +107,6 @@ const FilterSort = () => {
         <FieldSet>
           <legend>Search by Name</legend>
           <Input type='text' onChange={handleInput} value={name}/>
-          <Buttons onClick={handleClick}>Search</Buttons>
         </FieldSet>
         
       <FieldSet>
@@ -158,6 +121,7 @@ const FilterSort = () => {
       <FieldSet>
         <legend>Sort</legend>
         <Select onChange={handleSort}>
+          <option value='none'>none</option>
           <option value='as by id'>Ascendant by id</option>
           <option value='des by id'>Descendant by id</option>
           <option value='as by score'>Ascendant by Health Score</option>

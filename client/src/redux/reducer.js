@@ -13,7 +13,6 @@ const initialState = {
   allRecipes: [],
   allDiets:[],
   showingRecipes:[],
-  filteredDiets: [],
 }
 
 
@@ -22,14 +21,18 @@ const initialState = {
 function reducer (state = initialState, action){
   switch(action.type){
     case ADD_RECIPES:
-      return {...state, allRecipes: [...state.allRecipes, ...action.payload], filteredDiets:[...action.payload], showingRecipes: [...action.payload]};
+      return {...state, allRecipes: [...state.allRecipes, ...action.payload], showingRecipes: [...action.payload]};
+
     case ADD_DIETS:
       return {...state, allDiets: [...state.allDiets, ...action.payload]};
-    case SEARCH_RECIPES:
-      return {...state, filteredDiets:[...action.payload], showingRecipes: [...action.payload]};
+
     case FILTER_DIETS:
       return {...state, showingRecipes:[...action.payload]};
+      
     case SORT: 
+      if(action.payload === 'none'){
+        return{...state}
+      }
       if(action.payload === 'as by id'){
         return {...state, showingRecipes: [...state.showingRecipes.sort((a,b)=> a.id - b.id)]}
       }

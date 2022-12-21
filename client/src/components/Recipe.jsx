@@ -1,5 +1,5 @@
-import React , { useState }from 'react'
-import { useDispatch } from 'react-redux'
+import React , { useEffect, useState }from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import { deleteFav, addFav } from '../redux/actions'
@@ -57,7 +57,13 @@ export const Recipe = (props) => {
 
   const [isFav, setIsFav] = useState(false)
   const dispatch = useDispatch()
-  
+  const myFavorites = useSelector(state => state.myFavorites)
+
+  useEffect(()=>{
+    if(myFavorites.find(favorite => favorite.id === props.id)){
+      setIsFav(true)
+    }
+  },[])
 
   const favHandler = () => {
     if(isFav) {setIsFav(false)
@@ -74,7 +80,7 @@ export const Recipe = (props) => {
       <h2>{props.title}</h2>
       <DietsWrapper>
       <h2>{props.title}</h2>
-      {props.diets.map(diet => <Diets key={diet.name}>{diet.name}</Diets>)}
+      {props.diets?.map(diet => <Diets key={diet.name}>{diet.name}</Diets>)}
       </DietsWrapper>
       </Specifics>
 
