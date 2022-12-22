@@ -53,7 +53,8 @@ function reducer (state = initialState, action){
     case ADD_RECIPE: 
       return{...state, 
         allRecipes:[...state.allRecipes, action.payload], 
-        showingRecipes:[...state.showingRecipes, action.payload]
+        showingRecipes:[...state.showingRecipes, action.payload],
+        myFavorites:[...state.myFavorites, action.payload]
       };  
     case ADD_FAVORITE:
       return{...state,
