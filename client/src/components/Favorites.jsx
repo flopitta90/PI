@@ -27,7 +27,7 @@ export const Favorites = () => {
  React.useEffect(()=>{
    setCurrentPage(0)
    setShowingFavorites([...myFavorites.slice(currentPage*9, currentPage*9 + 9)])
-},[showingFavorites])
+},[myFavorites])
 
 const handlePages = (num) => {
   if(parseInt(num))

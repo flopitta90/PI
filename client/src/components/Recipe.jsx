@@ -12,6 +12,7 @@ const RecipeDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  border-radius: 20px;
 `
 const Specifics = styled(NavLink)`
   text-decoration: none;

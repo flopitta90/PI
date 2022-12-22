@@ -178,6 +178,9 @@ export const New = () => {
     }
   }
 
+  // function refreshPage() {
+  //   window.location.reload();
+  // }
 
   const handleSubmit= (e) => {
 

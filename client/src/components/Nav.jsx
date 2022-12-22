@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import mustache from '../images/mustacheWhite.svg'
 
@@ -14,7 +14,7 @@ const NavDiv= styled.nav`
 `
 const NavButtons=styled(NavLink)`
   text-decoration: none;
-  color:#67eb8e;
+  color: white;
   font-family: 'Bowlby One SC';
   font-size: 20px;
   letter-spacing: 1px;
@@ -22,6 +22,15 @@ const NavButtons=styled(NavLink)`
   margin-right: 40px;
   display: flex;
   flex-direction: column;
+  &:hover{
+    color: #67eb8e;
+  }
+
+  &.selected{
+    text-decoration: underline;
+    color: #67eb8e;
+  }
+ 
 `
 
 const Mustache = styled.img`
@@ -32,6 +41,9 @@ const Menu= styled.div`
 `
 
 const Nav = () => {
+
+const location = useLocation()
+
   return (
     <NavDiv>
       <NavButtons to='/'>
@@ -40,9 +52,9 @@ const Nav = () => {
         <span>kitchen</span>
       </NavButtons>
         <Menu> 
-      <NavButtons to='/home'>recipes</NavButtons>
-      <NavButtons to='/favorites'>my favorites</NavButtons>
-      <NavButtons to='/recipe'>add a recipe</NavButtons>
+     {location.pathname === '/home' ? <NavButtons className='selected' to='/home'>recipes</NavButtons> : <NavButtons to='/home'>recipes</NavButtons>}
+      {location.pathname === '/favorites' ? <NavButtons to='/favorites' className='selected'>my favorites</NavButtons> : <NavButtons to='/favorites'>my favorites</NavButtons>}
+      {location.pathname=== '/recipe' ? <NavButtons className='selected' to='/recipe'>add a recipe</NavButtons> : <NavButtons to='/recipe'>add a recipe</NavButtons>}
         </Menu>
     </NavDiv>
   )
