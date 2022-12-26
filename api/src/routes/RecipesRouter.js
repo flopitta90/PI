@@ -88,7 +88,8 @@ router.post('/',async(req,res)=>{
       })
       const result = await Promise.all(newDiets)
       await newRecipe.addDiets(result)
-      res.status(200).send(newRecipe)
+      const newRecipeDiet = await Recipe.findOne({where: {id : newRecipe.id}, include: Diet})
+      res.status(200).send(newRecipeDiet)
     } catch (error) {
       return res.status(400).send({error: error.message})
     }
