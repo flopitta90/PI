@@ -76,11 +76,12 @@ router.get('/:id', async (req,res)=>{
 
   
 router.post('/',async(req,res)=>{
-  const {title, image, summary, diets, healthScore, analyzedInstructions,readyInMinutes,ingredients,dishTypes} = req.body
+  let {title, image, summary, diets, healthScore, analyzedInstructions,readyInMinutes,ingredients,dishTypes} = req.body
   if(!title|| !summary ||!diets){
     return res.status(400).send('No se han completado los campos necesarios')
   }else{
     try {
+      if(ingredients.length === 0){ingredients = undefined}
       const newRecipe = await Recipe.create({title, image, summary, healthScore, analyzedInstructions,readyInMinutes,ingredients, dishTypes})
       const newDiets = await diets.map(async diet => {
         const [newDiet, created] = await Diet.findOrCreate({where: {name: diet}})
