@@ -56,7 +56,11 @@ const Fields = styled.form`
       @media screen and (max-width: 960px){
       flex-direction: column;
       margin: 0px;
+      .img{
+        align-items: center;
+      }
     }
+   
     }
   }
 
@@ -129,13 +133,13 @@ export const New = () => {
   const navigate = useNavigate()
   const [recipeData, setRecipeData] = useState({
     title: '',
-    image: '',
+    image: undefined,
     summary: '',
     healthScore: undefined,
-    dishTypes:'',
-    analyzedInstructions:'',
+    dishTypes: undefined,
+    analyzedInstructions:undefined,
     readyInMinutes: undefined,
-    ingredient:'',
+    ingredient: undefined,
     ingredients:[],
     diets:[]
   })
@@ -322,7 +326,9 @@ export const New = () => {
           <label>Image</label>
           <input type="text" placeholder='Paste url of your image here' onChange={handleChange} name='image' value={recipeData.image}/>
           <Error>{errors.image}</Error>
+          <div className='img'>
           {recipeData.image ? <img alt= {recipeData.title} width='200px'src={recipeData.image} /> : null}
+          </div>
         </div>      
 
       </Fields>

@@ -1,20 +1,19 @@
 import './App.css';
 import Nav from './components/Nav'
 import Home from './components/Home'
-import {Routes, Route, useLocation} from 'react-router-dom'
+import {Routes, Route, useLocation, NavLink} from 'react-router-dom'
 import Welcome  from './components/Welcome';
 import { Favorites } from './components/Favorites';
 import { New } from './components/New';
 import Detail from './components/Detail';
 import Master from './components/Master';
 import FilterSort from './components/FilterSort';
-
+import { Error } from './components/Error';
 
 
 function App() {
 
   const location = useLocation()
-
 
   return (
     <div className="App">
@@ -26,6 +25,7 @@ function App() {
         <Route path='/detail/:id' element={<Master><Detail/></Master>}/>
         <Route path='/' element={<Master><Welcome/></Master>}/>
         <Route path='/search' element={<Master><FilterSort/></Master>}/>
+        <Route path='*' element={<Master><Error/></Master>} />
       </Routes>
     </div>
   );

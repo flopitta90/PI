@@ -38,10 +38,13 @@ const Summary=styled.p`
     padding:10px;
   }
 `
-
+const SubTitleWrapper= styled.div`
+background-color: #67eb8e;
+`
 
 const Wrapper= styled.div`
-  margin: 30px;
+  /* margin: 30px; */
+  padding: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -103,15 +106,20 @@ const Detail = ({allRecipes}) => {
       <img src={recipe.image} alt={recipe.title} width='500px' />
       <Summary dangerouslySetInnerHTML={ { __html: recipe.summary } }/>
       </SummaryAndImage>
-     
-      
-        <Wrapper>
-          <SubTitle>Ready in {recipe.readyInMinutes} minutes</SubTitle>
-        </Wrapper>
 
-        <Wrapper>
-          <SubTitle>Health Score: {recipe.healthScore}</SubTitle>
-        </Wrapper>
+       <SubTitleWrapper>
+          <Wrapper>
+            <SubTitle>Ready in {recipe.readyInMinutes} minutes</SubTitle>
+          </Wrapper>
+
+          <Wrapper>
+            <SubTitle>Health Score: {recipe.healthScore}</SubTitle>
+          </Wrapper>
+
+          <Wrapper>
+            <SubTitle>{recipe.dishTypes}</SubTitle>
+          </Wrapper>
+        </SubTitleWrapper>
 
         <Wrapper>
           <div>
