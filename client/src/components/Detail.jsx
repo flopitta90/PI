@@ -7,6 +7,9 @@ const Title =styled.h1`
    font-family: 'Bowlby One SC';
    font-size: 100px;
    letter-spacing: 3px;
+   @media screen and (max-width: 960px){
+    font-size: 50px;
+   }
 `
 const SummaryAndImage = styled.div`
   display: flex;
@@ -15,6 +18,9 @@ const SummaryAndImage = styled.div`
   color: white;
   font-family: 'Courier New', Courier, monospace;
   justify-content: space-between;
+  @media screen and (max-width: 960px){
+    flex-direction: column;
+  }
 `
 const Summary=styled.p`
   width: 600px;
@@ -26,6 +32,10 @@ const Summary=styled.p`
   a{
     text-decoration: none;
     color: white;
+  }
+  @media screen and (max-width: 960px){
+    width: 90%;
+    padding:10px;
   }
 `
 
@@ -42,11 +52,20 @@ const Wrapper= styled.div`
   li{
     width: 500px;
     line-height: 28px;
+    @media screen and (max-width: 960px){
+      width: 90%;
+    }
   }  
   p{
     width: 500px;
     line-height: 28px;
+    background-color: #f8f8f8;
+    padding: 0px 20px;
+    @media screen and (max-width: 960px){
+      width: 90%;
+    }
   }
+
 `
 const Fieldset = styled.hr`
   border: solid;
@@ -54,13 +73,20 @@ const Fieldset = styled.hr`
   width: 400px;
   display: inline-block;
   margin-left: 30px;
+  @media screen and (max-width: 960px){
+    width: 130px;
+  }
 `
 const SubTitle = styled.span`
   font-family: 'Bowlby One SC', cursive;
   font-size: 28px;
+  @media screen and (max-width: 960px){
+    font-size: 20px;
+  }
 `
 const Ingredient = styled.li`
- 
+background-color: #f8f8f8;
+padding: 0px 20px;
 `
 
 const Detail = ({allRecipes}) => {

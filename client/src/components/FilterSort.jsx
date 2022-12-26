@@ -1,19 +1,23 @@
 import React, {useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { filterDiets, searchRecipes, sort } from '../redux/actions'
+import { addDietId, filterDiets, setSelectedSort, setName, sort } from '../redux/actions'
 import { useEffect } from 'react'
 import styled from 'styled-components'
+import { NavLink } from 'react-router-dom'
 
 const Wrapper= styled.div`
   display: flex;
+  width: 80%;
   flex-direction: column;
-  width: 15%;
   padding: 30px 20px;
   font-family: 'Courier New', Courier, monospace;
   font-weight: bold;
   font-size: 18px;
   margin-left: 20px;
   align-items: center;
+  @media screen and (max-width: 960px){
+    width: 80%;
+  }
 `
 const FieldSet = styled.fieldset`
   border-style: solid 4px;
@@ -23,6 +27,7 @@ const FieldSet = styled.fieldset`
   text-align: left;
   display: flex;
   flex-direction: column;
+  background-color: #f8f8f8;
   `
 
 const Input = styled.input`
@@ -38,11 +43,26 @@ const Buttons =styled.button`
  padding: 10px;
  font-family: 'Bowlby One SC', cursive;
  width: 100%;
-:hover{
-  background-color: #67eb8e;
-  color: black;
-  border: solid black;
-}
+ @media (hover: hover) {
+   &:hover{
+     background-color: #67eb8e;
+     color: black;
+     border: solid black;
+    }
+  }
+  &.mobile{
+    display: none;
+    @media screen and (max-width: 960px){
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+  }
+`
+const Link = styled(NavLink)`
+  text-decoration: none;
+  color:#67eb8e;
 `
 const Select = styled.select`
   border: solid;
@@ -56,21 +76,20 @@ const FilterSort = () => {
  const dispatch = useDispatch()
  const allDiets = useSelector(state => state.allDiets)
  const allRecipes = useSelector(state => state.allRecipes)
- const [selectedIds, setSelectedIds] = useState([])
- const [name , setName] = useState('')
- const [selectedSort, setSelectedSort] = useState('none')
+const selectedSort = useSelector(state=> state.selectedSort)
+const selectedIds = useSelector(state=> state.selectedIds)
+const name = useSelector(state=> state.name)
  const payload = allRecipes.filter(recipe => filteredDietsFunc(recipe.diets, selectedIds) && recipe.title.toLowerCase().includes(name))
- 
   
 
   function whenSelected(e){
     const id = parseInt(e.target.value)
     const result = selectedIds.find(element => element === id)
     if(result){
-      setSelectedIds(selectedIds.filter(item => item !== id))
+      dispatch(addDietId(selectedIds.filter(item => item !== id)))
     }
     else{
-      setSelectedIds([...selectedIds, id])
+      dispatch(addDietId([...selectedIds, id]))
     }
   }
   
@@ -89,17 +108,17 @@ const FilterSort = () => {
   }
 
   function handleClear(){
-    setSelectedIds([])
-    setName('')
+    dispatch(addDietId([]))
+    dispatch(setName(''))
   }
  
   const handleInput =(event) => {
-  setName(event.target.value)
+  dispatch(setName(event.target.value))
 }
 
 
   const handleSort = (e) =>{
-    setSelectedSort(e.target.value)
+    dispatch(setSelectedSort(e.target.value))
   }
 
   return (
@@ -130,7 +149,8 @@ const FilterSort = () => {
           <option value='za'>Alphabetically Z-A</option>
         </Select>
       </FieldSet>
-      <Buttons onClick={handleClear}>Clear search</Buttons>
+      <Buttons className='mobile'><Link to='/home'>search</Link></Buttons>
+      <Buttons className='notMobile' onClick={handleClear}>Clear search</Buttons>
     </Wrapper>
   )
 }

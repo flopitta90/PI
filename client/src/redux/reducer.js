@@ -1,11 +1,13 @@
 export const ADD_RECIPES = 'ADD_RECIPES'
 export const ADD_DIETS = 'ADD_DIETS'
-export const SEARCH_RECIPES = 'SEARCH_RECIPES'
 export const FILTER_DIETS = 'FILTER_DIETS'
 export const SORT ='SORT'
 export const ADD_RECIPE = 'ADD_RECIPE'
 export const ADD_FAVORITE = 'ADD_FAVORITE'
 export const DELETE_FAVORITE = 'DELETE_FAVORITE'
+export const ADD_ID = 'ADD_ID'
+export const SELECTED_SORT = 'SELECTED_SORT'
+export const SELECTED_NAME = 'SELECTED_NAME'
 
 
 const initialState = {
@@ -13,6 +15,9 @@ const initialState = {
   allRecipes: [],
   allDiets:[],
   showingRecipes:[],
+  selectedIds:[],
+  selectedSort: 'none',
+  name:'',
 }
 
 
@@ -63,6 +68,21 @@ function reducer (state = initialState, action){
     case DELETE_FAVORITE:
       return{...state,
         myFavorites: [...state.myFavorites.filter(recipe => recipe.id !== action.payload)]
+      }  
+    case ADD_ID:
+      return{
+        ...state,
+        selectedIds: [...action.payload]
+      }  
+    case SELECTED_NAME:
+      return{
+        ...state,
+        name: action.payload
+      }  
+    case SELECTED_SORT:
+      return{
+        ...state,
+        selectedSort: action.payload
       }  
     default: return state  
   }

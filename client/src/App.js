@@ -7,6 +7,7 @@ import { Favorites } from './components/Favorites';
 import { New } from './components/New';
 import Detail from './components/Detail';
 import Master from './components/Master';
+import FilterSort from './components/FilterSort';
 
 
 
@@ -24,6 +25,7 @@ function App() {
         <Route path='/recipe' element={<Master><New/></Master>}/>
         <Route path='/detail/:id' element={<Master><Detail/></Master>}/>
         <Route path='/' element={<Master><Welcome/></Master>}/>
+        <Route path='/search' element={<Master><FilterSort/></Master>}/>
       </Routes>
     </div>
   );

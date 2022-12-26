@@ -13,6 +13,16 @@ const Showing= styled.div`
   flex-direction: column;
   width: 80%;
   right: 0;
+  @media screen and (max-width: 960px) {
+    width: 100%;
+  }
+`
+const FilterWrapper = styled.div`
+width: 20%;
+
+  @media screen and (max-width: 960px){
+    display: none;
+  }
 `
 const Title = styled.h1`
   font-family: 'Bowlby One SC', cursive;
@@ -60,7 +70,9 @@ const Home = ({showingRecipes}) => {
 
   return (
     <Wrapper>
-      <FilterSort/>
+      <FilterWrapper>
+       <FilterSort/>
+      </FilterWrapper>
       <Showing>
         <Title>recipes</Title>
         <Recipes>

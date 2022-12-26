@@ -21,10 +21,15 @@ const Mustache= styled.button`
   background-color: transparent;
   position: relative;
   text-align: center;
-  
-  :hover{
-    cursor: pointer;
-    transform: scale(1.1);
+  @media (hover: hover) {
+    &:hover{
+      cursor: pointer;
+      transform: scale(1.1);
+    }
+  }
+
+  @media screen and (max-width: 600px){
+    width: 100%;
   }
 `
 
@@ -36,7 +41,18 @@ const Enter= styled.h3`
   font-family: 'Bowlby One SC';
   font-size: 25px;
   letter-spacing: 1px;
-  
+  @media screen and (max-width: 600px){
+    position: absolute;
+    top: 8%;
+    left: 38%
+  }
+`
+
+const MustacheImg = styled.img`
+   width:600px ;
+   @media screen and (max-width: 600px){
+    width: 350px;
+  }
 `
 
 
@@ -52,7 +68,7 @@ const Welcome = () => {
     <Wrapper>
       <Title>ITALIAN KITCHEN</Title>
       <Mustache onClick={goToHome}>
-        <img width='600px' src={mustache}/>
+        <MustacheImg src={mustache}/>
         <Enter>enter</Enter>
       </Mustache>
     </Wrapper>

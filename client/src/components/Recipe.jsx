@@ -13,6 +13,9 @@ const RecipeDiv = styled.div`
   flex-direction: column;
   justify-content: space-between;
   border-radius: 20px;
+  @media screen and (max-width: 960px) {
+    width: 300px;
+  }
 `
 const Specifics = styled(NavLink)`
   text-decoration: none;
@@ -27,17 +30,18 @@ top:0;
 height: 85%;
 width: 100%;
 color: transparent;
- &:hover{
-  position: absolute;
-  background-color: rgb(0, 0, 0);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  padding-bottom: 10px;
-  height: 85%;
-  color: #67eb8e;
-  transition: 0.5s all ease;
-
+@media (hover: hover) {
+  &:hover{
+    position: absolute;
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding-bottom: 10px;
+    height: 85%;
+    color: #67eb8e;
+    transition: 0.5s all ease;
+  }
 }
 `
 const Diets = styled.span`

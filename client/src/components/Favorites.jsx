@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Pagination } from './Pagination'
 import { Recipe } from './Recipe'
+import apron from '../images/apron.gif'
 import styled from 'styled-components'
 
 const Recipes= styled.div`
@@ -13,6 +14,16 @@ const Title = styled.h1`
   font-family: 'Bowlby One SC', cursive;
   font-size: 60px;
   letter-spacing: 2px;
+  &.apron{
+    font-size: 40px;
+    color:#67eb8e;
+  }
+`
+const Background= styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: flex-start;
 `
 export const Favorites = () => {
 
@@ -47,10 +58,9 @@ const handlePages = (num) => {
    });
  }
 
-  return (
-    <div>
+  return showingFavorites.length ? <div>
       <Title>my recipes</Title>
-     <Recipes>
+       <Recipes>
       {showingFavorites?.map(recipe => {
           return <Recipe
           key={recipe.id}
@@ -66,7 +76,10 @@ const handlePages = (num) => {
           />
         })}
      </Recipes>
-     <Pagination amount={myFavorites.length} currentPage={currentPage} handlePages={handlePages}/>
-    </div>
-  )
+     <Pagination amount={myFavorites.length} currentPage={currentPage} handlePages={handlePages}/> 
+    </div> : <Background>
+      <Title className='apron'>grab your apron and give love to a recipe</Title>
+      <img src={apron}/>
+    </Background>
+  
 }

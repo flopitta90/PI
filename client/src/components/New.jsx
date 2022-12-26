@@ -28,6 +28,9 @@ const NewRecipeForm = styled.div`
   align-items: center;
   background-color: #f8f8f8;
   padding: 40px;
+  @media screen and (max-width: 960px){
+      width: 90%;
+    }
 `
 const Fields = styled.form`
   text-align: justify;
@@ -46,9 +49,14 @@ const Fields = styled.form`
     flex-direction: column;
     text-align: left;
     justify-content: center;
+   
     div{
       flex-direction: row;
       margin: 5px;
+      @media screen and (max-width: 960px){
+      flex-direction: column;
+      margin: 0px;
+    }
     }
   }
 
@@ -56,6 +64,9 @@ const Fields = styled.form`
     width: 45%;
     display: flex;
     flex-direction :column ;
+    @media screen and (max-width: 960px){
+      width: 90%;
+    }
     .ingredients{
       display: flex;
       flex-direction: row;
@@ -69,10 +80,12 @@ const Fields = styled.form`
       font-family: 'Bowlby One SC', cursive;
       padding: 10px;
       margin: 5px;
-      :hover{
-        background-color: #67eb8e;
-        color: black;
+      @media (hover: hover) {
+        &:hover{
+          background-color: #67eb8e;
+          color: black;
         }
+      }
     }
     .x{
       padding: 2px;
@@ -96,11 +109,16 @@ const Submit = styled.button`
  padding: 10px;
  font-family: 'Bowlby One SC', cursive;
  width: 20%;
-:hover{
-  background-color: #67eb8e;
-  color: black;
-  border: solid black;
+ @media (hover: hover) {
+   &:hover{
+     background-color: #67eb8e;
+     color: black;
+     border: solid black;
+    }
 }
+@media screen and (max-width: 960px){
+      width: 90%;
+    }
 `
 
 
@@ -178,9 +196,7 @@ export const New = () => {
     }
   }
 
-  // function refreshPage() {
-  //   window.location.reload();
-  // }
+ 
 
   const handleSubmit= (e) => {
 
@@ -197,9 +213,6 @@ export const New = () => {
         .then(response => response.json())
         .then(result => {dispatch(addNewRecipe(result))
         if(result.id) {
-          fetch(`http://localhost:3001/recipes`)
-          .then((response) => response.json())
-          .then((data)=> dispatch(searchRecipes(data)))
           navigate(`/detail/${result.id}`)
         } else {
           window.alert('There was an error')

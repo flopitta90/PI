@@ -1,4 +1,4 @@
-import { ADD_DIETS, ADD_RECIPE, ADD_RECIPES, FILTER_DIETS, SEARCH_RECIPES, SORT, ADD_FAVORITE, DELETE_FAVORITE} from "./reducer";
+import { ADD_DIETS, ADD_RECIPE, ADD_RECIPES, FILTER_DIETS, SEARCH_RECIPES, SORT, ADD_FAVORITE, DELETE_FAVORITE, ADD_ID, SELECTED_NAME, SELECTED_SORT} from "./reducer";
 
 export function addRecipes(recipes){
   return {type: ADD_RECIPES, payload: recipes}
@@ -6,10 +6,6 @@ export function addRecipes(recipes){
 
 export function addDiets(diets){
   return {type: ADD_DIETS, payload: diets}
-}
-
-export function searchRecipes(recipes){
-  return {type: SEARCH_RECIPES, payload: recipes}
 }
 
 export function filterDiets(diet){
@@ -30,4 +26,16 @@ export function addFav(recipe){
 
 export function deleteFav(id){
   return {type: DELETE_FAVORITE, payload: id}
+}
+
+export function addDietId(id){
+  return{type: ADD_ID, payload: id}
+}
+
+export function setName(name){
+  return{type: SELECTED_NAME, payload: name}
+}
+
+export function setSelectedSort(sort){
+  return{type: SELECTED_SORT, payload: sort}
 }
