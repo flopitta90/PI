@@ -37,6 +37,14 @@ const Recipes= styled.div`
 
 const Home = ({showingRecipes}) => {
 
+  React.useEffect(()=> {
+    window.scroll({
+    top: 0, 
+    left: 0, 
+    behavior: 'smooth'
+  })
+},[])
+
   const [currentPage, setCurrentPage] = React.useState(0)
   const[showingRecipesPages , setShowingRecipes] = React.useState([])
   

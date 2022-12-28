@@ -29,6 +29,7 @@ const SubTitle = styled.h1`
 `
 
 export const Error = () => {
+
   return (
     <Div>
       <div>
@@ -36,7 +37,7 @@ export const Error = () => {
      <h2>There's nothing to see here...</h2>
      <SubTitle>go back to YOUR KITCHEN!</SubTitle>
       </div>
-     <img src='https://media.tenor.com/G7dQBkopG94AAAAC/chef-angry.gif'/>
+     <img alt='gif' src='https://media.tenor.com/G7dQBkopG94AAAAC/chef-angry.gif'/>
     </Div>
   )
 }

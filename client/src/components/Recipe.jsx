@@ -6,7 +6,7 @@ import { deleteFav, addFav } from '../redux/actions'
 
 const RecipeDiv = styled.div`
   background-color: black;
-  width: 30%;
+  width: 300px;
   margin-bottom: 30px;
   position: relative;
   display: flex;

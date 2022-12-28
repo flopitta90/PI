@@ -127,6 +127,13 @@ const Submit = styled.button`
 
 
 export const New = () => {
+  React.useEffect(()=> {
+    window.scroll({
+    top: 0, 
+    left: 0, 
+    behavior: 'smooth'
+  })
+},[])
   const allRecipes = useSelector(state => state.allRecipes)
   const allDiets = useSelector(state => state.allDiets)
   const dispatch = useDispatch()
@@ -332,7 +339,7 @@ export const New = () => {
         </div>      
 
       </Fields>
-        <Submit onClick={handleSubmit}>Submit</Submit>
+        <Submit disabled= {Object.keys(errors).length > 0 || Object.keys(recipeData).length === 0} onClick={handleSubmit}>Submit</Submit>
     </NewRecipeForm>
     </FormWrapper>
   )

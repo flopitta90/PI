@@ -2,10 +2,11 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
+import loading from '../images/loading.gif'
 
 const Title =styled.h1`
    font-family: 'Bowlby One SC';
-   font-size: 100px;
+   font-size: 90px;
    letter-spacing: 3px;
    @media screen and (max-width: 960px){
     font-size: 50px;
@@ -43,7 +44,6 @@ background-color: #67eb8e;
 `
 
 const Wrapper= styled.div`
-  /* margin: 30px; */
   padding: 30px;
   display: flex;
   flex-direction: column;
@@ -93,13 +93,21 @@ padding: 0px 20px;
 `
 
 const Detail = ({allRecipes}) => {
+  
+  React.useEffect(()=> {
+    window.scroll({
+    top: 0, 
+    left: 0, 
+    behavior: 'smooth'
+  })
+  },[])
 
   const {id} = useParams()
   
   const recipe = allRecipes.find(recipe => recipe.id === parseInt(id))
   
   return (
-    allRecipes.length < 1 ? <h1>loading</h1> :
+    allRecipes.length < 1 ? <img  width = '350px'src={loading}/> :
     <div>
       <Title>{recipe.title}</Title>
       <SummaryAndImage>

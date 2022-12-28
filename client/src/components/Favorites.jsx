@@ -15,7 +15,7 @@ const Title = styled.h1`
   font-size: 60px;
   letter-spacing: 2px;
   &.apron{
-    font-size: 40px;
+    font-size: 30px;
     color:#67eb8e;
   }
 `
@@ -26,6 +26,14 @@ align-items: center;
 justify-content: flex-start;
 `
 export const Favorites = () => {
+
+  React.useEffect(()=> {
+    window.scroll({
+    top: 0, 
+    left: 0, 
+    behavior: 'smooth'
+  })
+},[])
 
   const myFavorites = useSelector(state => state.myFavorites)
   const [showingFavorites, setShowingFavorites] = useState([])
@@ -79,7 +87,7 @@ const handlePages = (num) => {
      <Pagination amount={myFavorites.length} currentPage={currentPage} handlePages={handlePages}/> 
     </div> : <Background>
       <Title className='apron'>grab your apron and give love to a recipe</Title>
-      <img src={apron}/>
+      <img width= '350 px'src={apron}/>
     </Background>
   
 }

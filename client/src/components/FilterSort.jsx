@@ -73,15 +73,21 @@ const Select = styled.select`
 
 const FilterSort = () => {
 
- const dispatch = useDispatch()
- const allDiets = useSelector(state => state.allDiets)
- const allRecipes = useSelector(state => state.allRecipes)
-const selectedSort = useSelector(state=> state.selectedSort)
-const selectedIds = useSelector(state=> state.selectedIds)
-const name = useSelector(state=> state.name)
- const payload = allRecipes.filter(recipe => filteredDietsFunc(recipe.diets, selectedIds) && recipe.title.toLowerCase().includes(name))
-  
-
+  const dispatch = useDispatch()
+  const allDiets = useSelector(state => state.allDiets)
+  const allRecipes = useSelector(state => state.allRecipes)
+  const selectedSort = useSelector(state=> state.selectedSort)
+  const selectedIds = useSelector(state=> state.selectedIds)
+  const name = useSelector(state=> state.name)
+  const payload = allRecipes.filter(recipe => filteredDietsFunc(recipe.diets, selectedIds) && recipe.title.toLowerCase().includes(name))
+    
+  useEffect(()=> {
+    window.scroll({
+    top: 0, 
+    left: 0, 
+    behavior: 'smooth'
+  })
+},[])
   function whenSelected(e){
     const id = parseInt(e.target.value)
     const result = selectedIds.find(element => element === id)
