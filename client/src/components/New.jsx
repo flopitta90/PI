@@ -1,7 +1,7 @@
 import React ,{ useState } from 'react'
 import validate from './validation.js' 
 import { useDispatch, useSelector } from 'react-redux'
-import {useNavigate} from 'react-router-dom'
+import {NavLink, useNavigate} from 'react-router-dom'
 import styled from 'styled-components'
 import { addNewRecipe , searchRecipes} from '../redux/actions.js'
 
@@ -124,8 +124,16 @@ const Submit = styled.button`
       width: 90%;
     }
 `
+const Link = styled(NavLink)`
+text-decoration: none;
+color: #67eb8e;
+@media (hover: hover) {
+   &:hover{
+    color: black;
+   }
 
-
+}
+`
 export const New = () => {
   React.useEffect(()=> {
     window.scroll({
@@ -308,6 +316,7 @@ export const New = () => {
                 <label >{diet.name}</label>
                 </div>
           })}  
+          <button><Link to='/diets' target='_blank'>info diets</Link></button>
           <Error>{errors.diets}</Error>
           </fieldset>
 

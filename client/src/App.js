@@ -9,6 +9,7 @@ import Detail from './components/Detail';
 import Master from './components/Master';
 import FilterSort from './components/FilterSort';
 import { Error } from './components/Error';
+import { Diets } from './components/Diets';
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route path='/detail/:id' element={<Master><Detail/></Master>}/>
         <Route path='/' element={<Master><Welcome/></Master>}/>
         <Route path='/search' element={<Master><FilterSort/></Master>}/>
+        <Route path='/diets' element={<Master><Diets/></Master>} />
         <Route path='*' element={<Master><Error/></Master>} />
       </Routes>
     </div>

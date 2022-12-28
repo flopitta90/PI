@@ -10,7 +10,6 @@ const Wrapper= styled.div`
   width: 80%;
   flex-direction: column;
   padding: 30px 20px;
-  font-family: 'Courier New', Courier, monospace;
   font-weight: bold;
   font-size: 18px;
   margin-left: 20px;
@@ -62,8 +61,13 @@ const Buttons =styled.button`
 `
 const Link = styled(NavLink)`
   text-decoration: none;
-  color:#67eb8e;
+  color:#67eb8e; 
+  @media (hover: hover) {
+   &:hover{
+    color:black;
+   }}
 `
+
 const Select = styled.select`
   border: solid;
   border-color: black;
@@ -157,6 +161,7 @@ const FilterSort = () => {
       </FieldSet>
       <Buttons className='mobile'><Link to='/home'>search</Link></Buttons>
       <Buttons className='notMobile' onClick={handleClear}>Clear search</Buttons>
+      <Buttons><Link to='/diets' target='_blank'>info diets</Link></Buttons>
     </Wrapper>
   )
 }
