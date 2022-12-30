@@ -9,7 +9,8 @@ const Title =styled.h1`
    font-size: 90px;
    letter-spacing: 3px;
    @media screen and (max-width: 960px){
-    font-size: 50px;
+    font-size: 40px;
+    padding: 5px;
    }
 `
 const SummaryAndImage = styled.div`
