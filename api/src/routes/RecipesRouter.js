@@ -3,6 +3,7 @@ const {Recipe, Diet} = require('../db')
 const router = Router();
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
+const axios = require('axios')
 
 router.get('/', async (req,res)=> {
   try {
@@ -97,5 +98,40 @@ router.post('/',async(req,res)=>{
   }
 })
 
+router.post('/bulkApi', async(req,res)=>{
+  try {
+    const data = await axios.get('https://api.spoonacular.com/recipes/complexSearch?apiKey=e8395995beaf43db975258c9fe69fd6e&cuisine=italian&instructionsRequired=true&fillIngredients=true&addRecipeInformation=true&number=100&limitLicense=true',
+    { headers: { "Accept-Encoding": "gzip,deflate,compress" }})
+    
+    let info = await data.data.results.map((ele) =>{ 
+         console.log(ele)   
+      return{
+          title: ele.title,
+          summary: ele.summary,
+          healthScore: ele.healthScore,
+          image: ele.image,
+          dishTypes: ele.dishTypes.join(', '),
+          analyzedInstructions: (ele.analyzedInstructions[0].steps.map(element => 'Step ' + element.number + ': ' + element.step)).join("\n"),
+          readyInMinutes: ele.readyInMinutes,
+          diets: ele.diets,
+          ingredients: ele.extendedIngredients.map(ing => ing.original)
+      }
+    }) 
+
+    info.forEach(async element => { 
+      const newRecipe = await Recipe.create(element)
+      const newDiets = element.diets.map(async diet => {
+          const [newDiet, created] = await Diet.findOrCreate({where: {name: diet}})
+          return newDiet
+        }
+      )
+      const result = await Promise.all(newDiets)
+      await newRecipe.addDiets(result)
+    });
+   res.status(200).send('Las recetas se han creado exitosamente')
+  } catch (error) {
+    return res.status(400).send({error: error.message})
+  }
+})
 
   module.exports = router
