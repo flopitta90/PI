@@ -20,11 +20,11 @@ function App() {
     <div className="App">
       {location.pathname === '/' ? null : <Nav />}
       <Routes>
-        <Route path= '/home' element={<Master><Home/></Master>}/>
+        <Route path='/' element={<Master><Welcome/></Master>}/>
+        <Route path='/home' element={<Master><Home/></Master>}/>
         <Route path='/favorites' element={<Master><Favorites/></Master>}/>
         <Route path='/recipe' element={<Master><New/></Master>}/>
         <Route path='/detail/:id' element={<Master><Detail/></Master>}/>
-        <Route path='/' element={<Master><Welcome/></Master>}/>
         <Route path='/search' element={<Master><FilterSort/></Master>}/>
         <Route path='/diets' element={<Master><Diets/></Master>} />
         <Route path='*' element={<Master><Error/></Master>} />

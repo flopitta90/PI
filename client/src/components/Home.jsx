@@ -11,6 +11,7 @@ const Wrapper = styled.div`
 const Showing= styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: 50px;
   width: 80%;
   right: 0;
   @media screen and (max-width: 960px) {
@@ -33,6 +34,14 @@ const Recipes= styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  h3{
+    font-family: 'Bowlby One SC', cursive;
+    font-size: 30px;
+    letter-spacing: 1px;
+    background-color:black;
+    color: white;
+    padding: 5px;
+  }
 `
 
 const Home = ({showingRecipes}) => {
@@ -82,9 +91,10 @@ const Home = ({showingRecipes}) => {
        <FilterSort/>
       </FilterWrapper>
       <Showing>
-        <Title>recipes</Title>
+        {/* <Title>recipes</Title> */}
         <Recipes>
-      {showingRecipesPages?.map(recipe => {
+      {showingRecipesPages.length < 1 ? <h3>there are no recipes that matches your search</h3> : 
+      showingRecipesPages?.map(recipe => {
         return <Recipe
         key={recipe.id}
         id={recipe.id}

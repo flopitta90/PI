@@ -33,6 +33,13 @@ const Mustache= styled.button`
   }
 `
 
+const MustacheImg = styled.img`
+   width:600px ;
+   @media screen and (max-width: 600px){
+    width: 350px;
+  }
+`
+
 const Enter= styled.h3`
   position: absolute;
   top: 20%;
@@ -45,13 +52,6 @@ const Enter= styled.h3`
     position: absolute;
     top: 8%;
     left: 38%
-  }
-`
-
-const MustacheImg = styled.img`
-   width:600px ;
-   @media screen and (max-width: 600px){
-    width: 350px;
   }
 `
 

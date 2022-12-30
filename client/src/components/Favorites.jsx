@@ -67,7 +67,7 @@ const handlePages = (num) => {
  }
 
   return showingFavorites.length ? <div>
-      <Title>my recipes</Title>
+      <Title></Title>
        <Recipes>
       {showingFavorites?.map(recipe => {
           return <Recipe

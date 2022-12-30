@@ -17,7 +17,7 @@ const validate = (recipeData, allRecipes)=>{
   
   if(recipeData.image){
     if(!isImage(recipeData.image)){
-      errors.image = 'The url does not belong to an image'
+      errors.image = 'The url should end with a correct image extension'
     }
   }
   if(!recipeData.summary){
