@@ -228,7 +228,7 @@ export const New = () => {
           body: JSON.stringify(recipeData)
       };
    
-      fetch('http://localhost:3001/recipes', recipe)
+      fetch('https://pi-production-b6af.up.railway.app/recipes', recipe)
         .then(response => response.json())
         .then(result => {dispatch(addNewRecipe(result))
         if(result.id) {

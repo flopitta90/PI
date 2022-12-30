@@ -5,13 +5,13 @@ import {addRecipes, addDiets} from '../redux/actions'
 const Master = (props) => {
   const dispatch = useDispatch()
   React.useEffect(()=>{
-    fetch(`http://localhost:3001/recipes`)
+    fetch(`https://pi-production-b6af.up.railway.app/recipes`)
       .then((response) => response.json())
       .then((data)=> dispatch(addRecipes(data)))
     }, [dispatch])
 
     React.useEffect(()=>{
-      fetch(`http://localhost:3001/diets`)
+      fetch(`https://pi-production-b6af.up.railway.app/diets`)
         .then((response) => response.json())
         .then((data)=> dispatch(addDiets(data)))
       }, [dispatch])
