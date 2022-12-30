@@ -47,7 +47,7 @@ const Mustache = styled.img`
 `
 const Menu= styled.div`
   display: flex;
-  justify-content: space-around;  
+  justify-content: space-evenly;  
 
   @media screen and (max-width: 960px) {
         display: flex;
