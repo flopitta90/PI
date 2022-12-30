@@ -57,14 +57,14 @@ const Wrapper= styled.div`
   
 
   li{
-    width: 500px;
+    width: 900px;
     line-height: 28px;
     @media screen and (max-width: 960px){
       width: 90%;
     }
   }  
   p{
-    width: 500px;
+    width: 900px;
     line-height: 28px;
     background-color: #f8f8f8;
     padding: 0px 20px;
@@ -145,7 +145,7 @@ const Detail = ({allRecipes}) => {
         
         <Wrapper>
           <div>
-            <SubTitle>Directions</SubTitle>
+            <SubTitle>Instructions</SubTitle>
             <Fieldset/>
           </div>
           <p>{recipe.analyzedInstructions}</p>

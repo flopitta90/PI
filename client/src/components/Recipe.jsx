@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import { deleteFav, addFav } from '../redux/actions'
 
+
 const RecipeDiv = styled.div`
   background-color: black;
   width: 300px;
@@ -23,6 +24,11 @@ const Specifics = styled(NavLink)`
   font-family: 'Bowlby One SC';
   letter-spacing: 2px;
   font-size: 15px;
+`
+const Img = styled.img`
+  width: 100%;
+  max-height: 250px;
+  object-fit: cover;
 `
 const DietsWrapper= styled.div`
 position: absolute;
@@ -81,7 +87,7 @@ export const Recipe = (props) => {
   return (
     <RecipeDiv>
       <Specifics to={`/detail/${props.id}`}>
-      <img width= '100%' alt={props.title} src={props.image}/>
+      <Img alt={props.title} src={props.image}/>
       <h2>{props.title}</h2>
       <DietsWrapper>
       <h2>{props.title}</h2>

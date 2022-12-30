@@ -16,7 +16,7 @@ justify-content: center;
 const DietsWrapper = styled.div`
   background-color: black;
   color:white;
-  width: 600px;
+  width: 900px;
   @media screen and (max-width: 960px){
     width: 350px;
   }

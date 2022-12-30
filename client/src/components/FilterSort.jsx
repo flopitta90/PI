@@ -123,7 +123,8 @@ const FilterSort = () => {
   }
  
   const handleInput =(event) => {
-  dispatch(setName(event.target.value))
+  const name = event.target.value.toLowerCase()
+  dispatch(setName(name))
 }
 
 
