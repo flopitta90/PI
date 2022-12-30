@@ -21,6 +21,9 @@ const SummaryAndImage = styled.div`
   justify-content: space-between;
   @media screen and (max-width: 960px){
     flex-direction: column;
+    img{
+      width: 100%;
+    }
   }
 `
 const Summary=styled.p`
