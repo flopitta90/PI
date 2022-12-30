@@ -17,6 +17,9 @@ const DietsWrapper = styled.div`
   background-color: black;
   color:white;
   width: 600px;
+  @media screen and (max-width: 960px){
+    width: 350px;
+  }
   p{
     margin: 0px 20px;
   }
