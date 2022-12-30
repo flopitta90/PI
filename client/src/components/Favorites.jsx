@@ -5,6 +5,15 @@ import { Recipe } from './Recipe'
 import apron from '../images/apron.gif'
 import styled from 'styled-components'
 
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 1000px;
+  margin: auto;
+`
+
 const Recipes= styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -66,7 +75,7 @@ const handlePages = (num) => {
    });
  }
 
-  return showingFavorites.length ? <div>
+  return showingFavorites.length ? <Wrapper>
       <Title></Title>
        <Recipes>
       {showingFavorites?.map(recipe => {
@@ -85,7 +94,7 @@ const handlePages = (num) => {
         })}
      </Recipes>
      <Pagination amount={myFavorites.length} currentPage={currentPage} handlePages={handlePages}/> 
-    </div> : <Background>
+    </Wrapper> : <Background>
       <Title className='apron'>grab your apron and give love to a recipe</Title>
       <img width= '350 px'src={apron}/>
     </Background>

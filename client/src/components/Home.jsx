@@ -7,6 +7,8 @@ import { Recipe } from './Recipe'
 
 const Wrapper = styled.div`
   display: flex;
+  max-width: 1300px;
+  margin:auto;
 `
 const Showing= styled.div`
   display: flex;

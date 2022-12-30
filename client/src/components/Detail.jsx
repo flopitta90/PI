@@ -18,7 +18,7 @@ const SummaryAndImage = styled.div`
   background-color: black;
   color: white;
   font-family: 'Courier New', Courier, monospace;
-  justify-content: space-between;
+  justify-content: space-evenly;
   @media screen and (max-width: 960px){
     flex-direction: column;
     img{
