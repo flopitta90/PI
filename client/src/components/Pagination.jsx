@@ -5,16 +5,21 @@ const BttPage = styled.button`
   background-color: black;
   color:#67eb8e;
   border: none;
-  margin: 5px;
   padding: 10px 0px;
   width: 40px;
   font-family: 'Bowlby One SC', cursive;
 `
 const BttPageS = styled.button`
-  background-color: #67eb8e;
-  color: black;
+  background-color:black;
+  color: white;
+  text-shadow:
+    0 0 1px #fff,
+    0 0 10px #fff,
+    0 0 25px #fff,
+    0 0 45px #0fa,
+    0 0 92px #0fa,
+    0 0 151px #0fa;
   border: none;
-  margin: 5px;
   padding: 10px 0px;
   width: 40px;
   font-family: 'Bowlby One SC', cursive;

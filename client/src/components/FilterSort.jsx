@@ -120,7 +120,6 @@ const FilterSort = () => {
   function handleClear(){
     dispatch(addDietId([]))
     dispatch(setName(''))
-    dispatch(setSelectedSort('none'))
   }
  
   const handleInput =(event) => {

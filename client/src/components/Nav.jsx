@@ -1,7 +1,7 @@
 import React ,{useState} from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
-import mustache from '../images/mustacheWhite.svg'
+import mustache from '../images/metalogo.gif'
 import menuIcon from '../images/menu.svg'
 import crossIcon from '../images/cross.svg'
 import searchIcon from '../images/search.svg'
@@ -19,21 +19,24 @@ const NavButtons=styled(NavLink)`
   text-decoration: none;
   color: white;
   font-family: 'Bowlby One SC';
-  font-size: 20px;
+  font-size: 22px;
   letter-spacing: 1px;
   max-height: 100px;
   margin-right: 40px;
   display: flex;
   flex-direction: column;
   @media (hover: hover) {
-    &:hover{
-      color: #67eb8e;
-    }
+   
   }
 
   &.selected{
-    text-decoration: underline;
     color: #67eb8e;
+    text-shadow:
+      0 0 1.5px #fff,
+      0 0 25px #0fa,
+      0 0 45px #0fa,
+      0 0 92px #0fa,
+      0 0 151px #0fa;
   }
   &.mobile{
     display: none;
@@ -81,9 +84,7 @@ const [mobileMenu, setMobileMenu] = useState(false)
   return (
     <NavDiv>
       <NavButtons to='/'>
-        <span>italian</span>
-        <Mustache height='30px' src={mustache}/>
-        <span>kitchen</span>
+        <Mustache height='100px' src={mustache}/>
       </NavButtons>
         <MenuIcon onClick={() => setMobileMenu(!mobileMenu)} src={mobileMenu ? crossIcon : menuIcon}/>
         <Menu open={mobileMenu}> 
