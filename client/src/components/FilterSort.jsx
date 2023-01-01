@@ -49,23 +49,37 @@ const Buttons =styled.button`
      border: solid black;
     }
   }
-  &.mobile{
-    display: none;
-    @media screen and (max-width: 960px){
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-  }
 `
 const Link = styled(NavLink)`
+  font-size: 13.3333px;
+  font-weight: lighter;
   text-decoration: none;
-  color:#67eb8e; 
+  background-color : black;
+  color:#67eb8e ;
+  margin-top: 5px;
+  padding: 10px 0px;
+  font-family: 'Bowlby One SC', cursive;
+  width: 100%;
   @media (hover: hover) {
-   &:hover{
-    color:black;
-   }}
+    &:hover{
+      background-color: #67eb8e;
+      color: black;
+      border: solid black;
+      }
+    }
+    &.mobile{
+      display: none;
+      @media screen and (max-width: 960px){
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }  
+    }
+`
+const Div =styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 `
 
 const Select = styled.select`
@@ -160,9 +174,11 @@ const FilterSort = () => {
           <option value='za'>Alphabetically Z-A</option>
         </Select>
       </FieldSet>
-      <Buttons className='mobile'><Link to='/home'>search</Link></Buttons>
-      <Buttons className='notMobile' onClick={handleClear}>Clear search</Buttons>
-      <Buttons><Link to='/diets' target='_blank'>info diets</Link></Buttons>
+      <Div>
+      <Link className='mobile' to='/home'>search</Link>
+      <Buttons onClick={handleClear}>Clear search</Buttons>
+      <Link to='/diets'>info diets</Link>
+      </Div>
     </Wrapper>
   )
 }
