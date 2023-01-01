@@ -88,10 +88,10 @@ const [mobileMenu, setMobileMenu] = useState(false)
       </NavButtons>
         <MenuIcon onClick={() => setMobileMenu(!mobileMenu)} src={mobileMenu ? crossIcon : menuIcon}/>
         <Menu open={mobileMenu}> 
+      {mobileMenu ? <NavButtons onClick={() => setMobileMenu(!mobileMenu)} to='/search' className='mobile'><img  width='60px'src={searchIcon}/></NavButtons> : null}
       {location.pathname === '/home' ? <NavButtons onClick={() => setMobileMenu(!mobileMenu)} className='selected' to='/home'>recipes</NavButtons> : <NavButtons onClick={() => setMobileMenu(!mobileMenu)}  to='/home'>recipes</NavButtons>}
       {location.pathname === '/favorites' ? <NavButtons to='/favorites' onClick={() => setMobileMenu(!mobileMenu)} className='selected'>my favorites</NavButtons> : <NavButtons onClick={() => setMobileMenu(!mobileMenu)}  to='/favorites'>my favorites</NavButtons>}
       {location.pathname=== '/recipe' ? <NavButtons onClick={() => setMobileMenu(!mobileMenu)}  className='selected' to='/recipe'>add a recipe</NavButtons> : <NavButtons onClick={() => setMobileMenu(!mobileMenu)}  to='/recipe'>add a recipe</NavButtons>}
-      {mobileMenu ? <NavButtons onClick={() => setMobileMenu(!mobileMenu)} to='/search' className='mobile'><img  width='60px'src={searchIcon}/></NavButtons> : null}
         </Menu>
     </NavDiv>
   )
