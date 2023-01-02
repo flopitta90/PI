@@ -14,9 +14,6 @@ const RecipeDiv = styled.div`
   flex-direction: column;
   justify-content: space-between;
   border-radius: 20px;
-  @media screen and (max-width: 960px) {
-    width: 300px;
-  }
 `
 const Specifics = styled(NavLink)`
   text-decoration: none;

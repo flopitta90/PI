@@ -17,7 +17,7 @@ const Showing= styled.div`
   width: 80%;
   right: 0;
   @media screen and (max-width: 960px) {
-    width: 100%;
+    width: 100vh;
   }
 `
 const FilterWrapper = styled.div`
@@ -25,6 +25,8 @@ width: 20%;
 
   @media screen and (max-width: 960px){
     display: none;
+    width: 0%;
+
   }
 `
 const Title = styled.h1`

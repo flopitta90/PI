@@ -42,13 +42,6 @@ const Buttons =styled.button`
  padding: 10px;
  font-family: 'Bowlby One SC', cursive;
  width: 100%;
- @media (hover: hover) {
-   &:hover{
-     background-color: #67eb8e;
-     color: black;
-     border: solid black;
-    }
-  }
 `
 const Link = styled(NavLink)`
   font-size: 13.3333px;
@@ -60,13 +53,7 @@ const Link = styled(NavLink)`
   padding: 10px 0px;
   font-family: 'Bowlby One SC', cursive;
   width: 100%;
-  @media (hover: hover) {
-    &:hover{
-      background-color: #67eb8e;
-      color: black;
-      border: solid black;
-      }
-    }
+  cursor: pointer;
     &.mobile{
       display: none;
       @media screen and (max-width: 960px){

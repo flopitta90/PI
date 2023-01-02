@@ -25,9 +25,9 @@ const NavButtons=styled(NavLink)`
   margin-right: 40px;
   display: flex;
   flex-direction: column;
-  @media (hover: hover) {
-   
-  }
+  @media screen and (max-width: 960px){
+      margin: auto;
+    }
 
   &.selected{
     color: #67eb8e;

@@ -7,16 +7,12 @@ const Wrapper = styled.div`
  display: flex ;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   padding: auto;
   background-color: black;
   height: 100vh;
 `
-const Title = styled.h1`
-  font-family: 'Bowlby One SC', cursive;
-  font-size: 50px;
-  letter-spacing: 1px;
-`
+
 
 const Mustache= styled.button`
   border-style: none;
@@ -36,7 +32,7 @@ const Mustache= styled.button`
 `
 
 const MustacheImg = styled.img`
-   width:400px ;
+   width: 400px ;
    @media screen and (max-width: 600px){
     width: 350px;
   }
@@ -68,10 +64,8 @@ const Welcome = () => {
 
   return (
     <Wrapper>
-      {/* <Title>ITALIAN KITCHEN</Title> */}
       <Mustache onClick={goToHome}>
         <MustacheImg src={mustache}/>
-        {/* <Enter>enter</Enter> */}
       </Mustache>
     </Wrapper>
   )
