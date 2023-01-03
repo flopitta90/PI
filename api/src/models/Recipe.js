@@ -32,7 +32,7 @@ module.exports = (sequelize) => {
     },
     analyzedInstructions:{
       type: DataTypes.TEXT,
-      defaultValue: 'No hay descripcion paso a paso para esta receta'
+      defaultValue: 'The instructions for this recipe were not provided.'
     },
     readyInMinutes:{
       type: DataTypes.INTEGER,
@@ -40,7 +40,7 @@ module.exports = (sequelize) => {
     },
     ingredients:{
       type: DataTypes.ARRAY(DataTypes.STRING),
-      defaultValue:['No se han especificado los ingredientes']
+      defaultValue:['The ingredients for this recipe were not provided']
     }
   });
 };
