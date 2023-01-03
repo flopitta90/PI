@@ -120,7 +120,7 @@ router.post('/',async(req,res)=>{
 router.put('/:id', async (req,res)=>{
   const {id} = req.params
   let {title, image, summary, diets, healthScore, analyzedInstructions,readyInMinutes,ingredients,dishTypes} = req.body
-  if(!title ||!summary || !diets){
+  if(!title ||!summary ||!diets){
     return res.status(400).send('You need to complete the required information from your recipe')
   }else{
     try {
@@ -141,6 +141,17 @@ router.put('/:id', async (req,res)=>{
     }
   }
   
+})
+
+router.delete('/:id', async(req,res)=>{
+  const {id} = req.params
+  try {
+    const recipe = await Recipe.findByPk(id)
+    recipe.destroy()
+    return res.status(200).send('The recipe has been deleted')
+  } catch (error) {
+    return res.status(400).send(error.message)
+  }
 })
 
 // router.post('/bulkApi', async(req,res)=>{
