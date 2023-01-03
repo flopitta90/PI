@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import loading from '../images/loading.gif'
+import {Error} from './Error'
 
 const Title =styled.h1`
    font-family: 'Bowlby One SC';
@@ -109,6 +110,7 @@ const Detail = ({allRecipes}) => {
   const {id} = useParams()
   
   const recipe = allRecipes.find(recipe => recipe.id === parseInt(id))
+  if(!recipe) {return <Error/>}
   
   return (
     allRecipes.length < 1 ? <img  width = '350px'src={loading}/> :
