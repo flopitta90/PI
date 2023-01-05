@@ -10,6 +10,7 @@ export const SELECTED_SORT = 'SELECTED_SORT'
 export const SELECTED_NAME = 'SELECTED_NAME'
 export const UPDATE_RECIPE = 'UPDATE_RECIPE'
 export const DELETE_RECIPE = 'DELETE_RECIPE'
+export const SET_PAGE = 'SET_PAGE'
 
 const initialState = {
   myFavorites: [],
@@ -19,6 +20,7 @@ const initialState = {
   selectedIds:[],
   selectedSort: 'none',
   name:'',
+  currentPage: 0
 }
 
 
@@ -95,6 +97,9 @@ function reducer (state = initialState, action){
       myFavorites: [...state.myFavorites.filter(recipe => recipe.id !== action.payload.id)],
       allRecipes: [...state.allRecipes.filter(recipe => recipe.id !== action.payload.id)]
     }
+    case SET_PAGE:
+      return{...state,
+      currentPage: action.payload}
     default: return state  
   }
 }

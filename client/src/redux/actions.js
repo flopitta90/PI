@@ -1,4 +1,4 @@
-import { ADD_DIETS, ADD_RECIPE, ADD_RECIPES, FILTER_DIETS, SORT, ADD_FAVORITE, DELETE_FAVORITE, ADD_ID, SELECTED_NAME, SELECTED_SORT, UPDATE_RECIPE, DELETE_RECIPE} from "./reducer";
+import { ADD_DIETS, ADD_RECIPE, ADD_RECIPES, FILTER_DIETS, SORT, ADD_FAVORITE, DELETE_FAVORITE, ADD_ID, SELECTED_NAME, SELECTED_SORT, UPDATE_RECIPE, DELETE_RECIPE, SET_PAGE} from "./reducer";
 
 export function addRecipes(recipes){
   return {type: ADD_RECIPES, payload: recipes}
@@ -45,4 +45,8 @@ export function updateRecipe(updatedRecipe){
 }
 export function deleteRecipe(deletedRecipe){
   return {type: DELETE_RECIPE, payload: deletedRecipe}
+}
+
+export function setCurrentPage(currentPage){
+  return {type: SET_PAGE, payload: currentPage}
 }

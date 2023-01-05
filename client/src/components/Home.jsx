@@ -1,14 +1,18 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import { connect, useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import FilterSort from './FilterSort'
 import { Pagination } from './Pagination'
 import { Recipe } from './Recipe'
+import { setCurrentPage } from '../redux/actions'
 
 const Wrapper = styled.div`
   display: flex;
   max-width: 1300px;
   margin:auto;
+  @media screen and (max-width: 960px) {
+    max-width: 100% ;
+  }
 `
 const Showing= styled.div`
   display: flex;
@@ -38,6 +42,7 @@ const Recipes= styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  max-width: 100% vw;
   h3{
     font-family: 'Bowlby One SC', cursive;
     font-size: 30px;
@@ -58,27 +63,29 @@ const Home = ({showingRecipes}) => {
   })
 },[])
 
-  const [currentPage, setCurrentPage] = React.useState(0)
+  // const [currentPage, setCurrentPage] = React.useState(0)
   const[showingRecipesPages , setShowingRecipes] = React.useState([])
+  const dispatch = useDispatch()
+  const currentPage = useSelector(state => state.currentPage)
   
   React.useEffect(()=>{
      setShowingRecipes([...showingRecipes.slice(currentPage*9, currentPage*9 + 9)])
   },[currentPage])
 
-  React.useEffect(()=>{
-    setCurrentPage(0)
-    setShowingRecipes([...showingRecipes.slice(currentPage*9, currentPage*9 + 9)])
- },[showingRecipes])
+//   React.useEffect(()=>{
+//     dispatch(setCurrentPage(0))
+//     setShowingRecipes([...showingRecipes.slice(currentPage*9, currentPage*9 + 9)])
+//  },[showingRecipes])
 
   const handlePages = (num) => {
    if(parseInt(num))
-    setCurrentPage(num-1)
+   dispatch(setCurrentPage(num-1))
     else{
       if(num === 'prev'){
-        setCurrentPage(currentPage-1)
+       dispatch(setCurrentPage(currentPage-1))
       }
       else if(num === 'next'){
-        setCurrentPage(currentPage+1)
+        dispatch(setCurrentPage(currentPage+1))
       }
     }
     window.scroll({
@@ -95,7 +102,6 @@ const Home = ({showingRecipes}) => {
        <FilterSort/>
       </FilterWrapper>
       <Showing>
-        {/* <Title>recipes</Title> */}
         <Recipes>
       {showingRecipesPages.length < 1 ? <h3>there are no recipes that matches your search</h3> : 
       showingRecipesPages?.map(recipe => {

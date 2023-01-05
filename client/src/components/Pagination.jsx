@@ -1,5 +1,7 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
+import { setCurrentPage } from '../redux/actions'
 
 const BttPage = styled.button`
   background-color: black;
@@ -34,6 +36,7 @@ const Wrapper = styled.div`
 
 
 export const Pagination = (props) => {
+  const dispatch = useDispatch()
   //we divide the quantity of showingrecipes by 9(as it is the amount showed on each page)
   let QttButtons = Math.ceil(props.amount / 9) // we use math.ceil to get the int number, taking into acount the floaters recipes
   let count = 0 // count will increase everytime we push a button on our array of buttons that will be rendered
@@ -46,7 +49,7 @@ export const Pagination = (props) => {
     arrButtons.push(buttons)
   }
   if(props.currentPage +5 < QttButtons) arrButtons.push('next') //if the amount of pages its less than the current page plus the 5 buttons we will add the next button
-  
+  if (QttButtons < props.currentPage) {dispatch(setCurrentPage(0))}
   const handleClick = (e) =>{
     props.handlePages(e.target.id)
   }
