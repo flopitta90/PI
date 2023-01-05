@@ -9,6 +9,7 @@ export const ADD_ID = 'ADD_ID'
 export const SELECTED_SORT = 'SELECTED_SORT'
 export const SELECTED_NAME = 'SELECTED_NAME'
 export const UPDATE_RECIPE = 'UPDATE_RECIPE'
+export const DELETE_RECIPE = 'DELETE_RECIPE'
 
 const initialState = {
   myFavorites: [],
@@ -89,6 +90,11 @@ function reducer (state = initialState, action){
       myFavorites: [...state.myFavorites.filter(recipe => recipe.id !== action.payload.id), action.payload],
       allRecipes: [...state.allRecipes.filter(recipe => recipe.id !== action.payload.id), action.payload],
     }  
+    case DELETE_RECIPE:
+      return{ ...state,
+      myFavorites: [...state.myFavorites.filter(recipe => recipe.id !== action.payload.id)],
+      allRecipes: [...state.allRecipes.filter(recipe => recipe.id !== action.payload.id)]
+    }
     default: return state  
   }
 }

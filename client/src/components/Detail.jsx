@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
-import { connect } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { connect, useDispatch } from 'react-redux'
+import { useNavigate, useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import loading from '../images/loading.gif'
 import {Error} from './Error'
 import { Update } from './Update'
 import iconEdit from '../images/edit.svg'
 import icondelete from '../images/delete.svg'
-
+import { deleteRecipe } from '../redux/actions'
 
 const Title =styled.h1`
    font-family: 'Bowlby One SC';
@@ -127,11 +127,32 @@ const Detail = ({allRecipes}) => {
   const {id} = useParams()
   const [edit , setEdit]= useState(false)
   const recipe = allRecipes.find(recipe => recipe.id === parseInt(id))
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   if(!recipe) {return <Error/>}
 
   const wantDelete =() =>{
     if(window.confirm('Are you sure you want to delete this recipe?')){
-      console.log('recipe deleted')
+      const recipe = {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+    };
+ 
+    fetch(`https://pi-production-b6af.up.railway.app/recipes/${id}`, recipe)
+      .then(response => response.json())
+      .then((data) => {dispatch(deleteRecipe(data))
+        if(data.id){ 
+          navigate(`/home`)
+          window.scroll({
+            top: 0, 
+            left: 0, 
+            behavior: 'smooth'
+          })
+        }
+        else{
+          window.alert('There was an error updating your recipe')
+        }
+      })
     }else{
       console.log('uff')
     }
