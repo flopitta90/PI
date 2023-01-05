@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import loading from '../images/loading.gif'
 import {Error} from './Error'
+import { Update } from './Update'
+import iconEdit from '../images/edit.svg'
+import icondelete from '../images/delete.svg'
+
 
 const Title =styled.h1`
    font-family: 'Bowlby One SC';
@@ -96,7 +100,20 @@ const Ingredient = styled.li`
 background-color: #f8f8f8;
 padding: 0px 20px;
 `
-
+const Button =styled.button`
+   background-color : black;
+      color:#67eb8e ;
+      border: none;
+      font-family: 'Bowlby One SC', cursive;
+      padding: 15px;
+      margin: 5px;
+      margin-bottom: 50px;
+      @media (hover: hover) {
+        &:hover{
+          background-color: #424141;
+        }
+      }
+`
 const Detail = ({allRecipes}) => {
   
   React.useEffect(()=> {
@@ -108,9 +125,17 @@ const Detail = ({allRecipes}) => {
   },[])
 
   const {id} = useParams()
-  
+  const [edit , setEdit]= useState(false)
   const recipe = allRecipes.find(recipe => recipe.id === parseInt(id))
   if(!recipe) {return <Error/>}
+
+  const wantDelete =() =>{
+    if(window.confirm('Are you sure you want to delete this recipe?')){
+      console.log('recipe deleted')
+    }else{
+      console.log('uff')
+    }
+  }
   
   return (
     allRecipes.length < 1 ? <img  width = '350px'src={loading}/> :
@@ -152,7 +177,10 @@ const Detail = ({allRecipes}) => {
           </div>
           <p>{recipe.analyzedInstructions}</p>
         </Wrapper>
-      
+        <Button 
+        onClick={()=> {setEdit(!edit)}}><img width= '20px'src={iconEdit}/></Button>
+        <Button onClick={wantDelete}><img width= '20px' src={icondelete}/></Button>
+        {edit ? <Update/> : null}
       
     </div>
   )

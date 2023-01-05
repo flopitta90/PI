@@ -4,7 +4,7 @@ function isImage(url) {
 
 const validate = (recipeData, allRecipes)=>{
   let errors={}
-  const titleExists = allRecipes.find(recipe => recipe.title === recipeData.title)
+  const titleExists = allRecipes.find(recipe => recipe.title === recipeData.title && recipeData.id !== recipe.id)
   if(titleExists){
     errors.title = 'That title already exists'
   }

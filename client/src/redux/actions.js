@@ -1,4 +1,4 @@
-import { ADD_DIETS, ADD_RECIPE, ADD_RECIPES, FILTER_DIETS, SEARCH_RECIPES, SORT, ADD_FAVORITE, DELETE_FAVORITE, ADD_ID, SELECTED_NAME, SELECTED_SORT} from "./reducer";
+import { ADD_DIETS, ADD_RECIPE, ADD_RECIPES, FILTER_DIETS, SORT, ADD_FAVORITE, DELETE_FAVORITE, ADD_ID, SELECTED_NAME, SELECTED_SORT, UPDATE_RECIPE} from "./reducer";
 
 export function addRecipes(recipes){
   return {type: ADD_RECIPES, payload: recipes}
@@ -38,4 +38,8 @@ export function setName(name){
 
 export function setSelectedSort(sort){
   return{type: SELECTED_SORT, payload: sort}
+}
+
+export function updateRecipe(updatedRecipe){
+  return {type: UPDATE_RECIPE, payload: updatedRecipe}
 }
