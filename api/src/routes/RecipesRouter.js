@@ -148,7 +148,7 @@ router.delete('/:id', async(req,res)=>{
   try {
     const recipe = await Recipe.findByPk(id)
     await recipe.destroy()
-    return res.status(200).send('The recipe has been deleted')
+    return res.status(200).send(recipe)
   } catch (error) {
     return res.status(400).send(error.message)
   }
