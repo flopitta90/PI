@@ -64,13 +64,14 @@ const Home = ({showingRecipes}) => {
 },[])
 
   // const [currentPage, setCurrentPage] = React.useState(0)
+  console.log(showingRecipes)
   const[showingRecipesPages , setShowingRecipes] = React.useState([])
   const dispatch = useDispatch()
   const currentPage = useSelector(state => state.currentPage)
   
   React.useEffect(()=>{
      setShowingRecipes([...showingRecipes.slice(currentPage*9, currentPage*9 + 9)])
-  },[currentPage])
+  },[currentPage, showingRecipes])
 
 //   React.useEffect(()=>{
 //     dispatch(setCurrentPage(0))
@@ -103,7 +104,7 @@ const Home = ({showingRecipes}) => {
       </FilterWrapper>
       <Showing>
         <Recipes>
-      {showingRecipesPages.length < 1 ? <h3>there are no recipes that matches your search</h3> : 
+      {showingRecipesPages?.length < 1 ? <h3>there are no recipes that matches your search</h3> : 
       showingRecipesPages?.map(recipe => {
         return <Recipe
         key={recipe.id}

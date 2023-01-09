@@ -19,6 +19,7 @@ const NewRecipeForm = styled.div`
   padding: 40px;
   @media screen and (max-width: 960px){
       width: 90%;
+      padding: 10px;
     }
 `
 const Fields = styled.form`

@@ -108,7 +108,7 @@ const FilterSort = () => {
   useEffect(()=>{
     dispatch(filterDiets(payload))
     dispatch(sort(selectedSort))
-  },[selectedIds, dispatch, name, selectedSort])
+  },[selectedIds, dispatch, name, selectedSort,allRecipes])
 
 
   function filteredDietsFunc(diets, selectedDiets){

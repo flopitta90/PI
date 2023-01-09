@@ -46,6 +46,9 @@ color: transparent;
     transition: 0.5s all ease;
   }
 }
+@media screen and (max-width: 960px){
+  display: none;
+}
 `
 const Diets = styled.span`
   font-family: 'Courier New', Courier, monospace;
