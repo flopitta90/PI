@@ -25,10 +25,12 @@ const Fields = styled.form`
   text-align: justify;
   textarea{
     height: 50px;
+    font-size: 16px;
   }
 
   input{
     max-height: 20px;
+    font-size: 16px
   }
 
   div{

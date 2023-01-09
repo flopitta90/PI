@@ -33,6 +33,7 @@ const Input = styled.input`
   background-color: transparent;
   border: solid;
   border-color: black;
+  font-size: 16px;
 `
 const Buttons =styled.button`
  background-color : black;
