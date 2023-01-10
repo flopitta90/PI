@@ -64,7 +64,6 @@ const Home = ({showingRecipes}) => {
 },[])
 
   // const [currentPage, setCurrentPage] = React.useState(0)
-  console.log(showingRecipes)
   const[showingRecipesPages , setShowingRecipes] = React.useState([])
   const dispatch = useDispatch()
   const currentPage = useSelector(state => state.currentPage)

@@ -22,12 +22,12 @@ const Mustache= styled.button`
   @media (hover: hover) {
     &:hover{
       cursor: pointer;
-      /* transform: scale(1.1); */
     }
   }
 
   @media screen and (max-width: 600px){
     width: 100%;
+    margin-top: 10%;
   }
 `
 
